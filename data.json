@@ -1,0 +1,1865 @@
+{
+  "materi": {
+    "judul": "Perancangan dan Produksi Kerajinan dengan Inspirasi Objek Budaya Lokal — Informasi Digital",
+    "isi": "Materi contoh tentang mesin pencarian, literasi digital, dan UU ITE telah dimuat ke dalam bank soal. Guru dapat mengganti materi ini dengan materi pelajaran lain, lalu menekan \"Buat Soal Otomatis\"."
+  },
+  "questionBank": {
+    "1": [
+      {
+        "qid": 1,
+        "type": "mc",
+        "prompt": "Apa nama layanan/program yang membantu menemukan informasi di internet dengan memasukkan kata kunci?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Mesin pencarian (search engine)"
+          },
+          {
+            "id": "o1",
+            "text": "Media sosial"
+          },
+          {
+            "id": "o2",
+            "text": "Aplikasi chatting"
+          },
+          {
+            "id": "o3",
+            "text": "Sistem operasi"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Mesin pencarian membantu pengguna menemukan informasi di internet melalui kata kunci."
+      },
+      {
+        "qid": 2,
+        "type": "mc",
+        "prompt": "Program khusus yang dikirim mesin pencari untuk menjelajahi jutaan website disebut...",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Crawler / bot"
+          },
+          {
+            "id": "o1",
+            "text": "Firewall"
+          },
+          {
+            "id": "o2",
+            "text": "Cache"
+          },
+          {
+            "id": "o3",
+            "text": "Cookie"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Tahap ini disebut Crawling, dilakukan oleh crawler atau bot."
+      },
+      {
+        "qid": 3,
+        "type": "mc",
+        "prompt": "Setelah halaman web ditemukan, informasi disimpan ke dalam database besar yang disebut...",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Indeks"
+          },
+          {
+            "id": "o1",
+            "text": "Folder"
+          },
+          {
+            "id": "o2",
+            "text": "Ranking"
+          },
+          {
+            "id": "o3",
+            "text": "Cloud pribadi"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Tahap ini disebut Indexing, data disimpan dalam indeks."
+      },
+      {
+        "qid": 4,
+        "type": "mc",
+        "prompt": "Mesin pencarian mana yang paling terkenal menjaga privasi dan tidak melacak aktivitas pengguna?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "DuckDuckGo"
+          },
+          {
+            "id": "o1",
+            "text": "Google"
+          },
+          {
+            "id": "o2",
+            "text": "Baidu"
+          },
+          {
+            "id": "o3",
+            "text": "Yahoo"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "DuckDuckGo dikenal tidak melacak dan tidak menyimpan riwayat pencarian."
+      },
+      {
+        "qid": 5,
+        "type": "mc",
+        "prompt": "Baidu adalah mesin pencarian terbesar yang berasal dari negara...",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Tiongkok"
+          },
+          {
+            "id": "o1",
+            "text": "Rusia"
+          },
+          {
+            "id": "o2",
+            "text": "Amerika Serikat"
+          },
+          {
+            "id": "o3",
+            "text": "Jepang"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Baidu adalah mesin pencarian terbesar di Tiongkok."
+      },
+      {
+        "qid": 6,
+        "type": "mc",
+        "prompt": "Manakah kelemahan umum dari Google sebagai mesin pencarian?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Menampilkan iklan dan mengumpulkan data pengguna"
+          },
+          {
+            "id": "o1",
+            "text": "Tidak bisa mencari gambar"
+          },
+          {
+            "id": "o2",
+            "text": "Tidak tersedia di ponsel"
+          },
+          {
+            "id": "o3",
+            "text": "Tidak dapat diakses di Indonesia"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Google menampilkan iklan pada beberapa hasil dan mengumpulkan data pengguna."
+      },
+      {
+        "qid": 7,
+        "type": "mc",
+        "prompt": "Tahap pertama dalam cara kerja mesin pencari, yaitu menjelajahi website menggunakan bot, disebut...",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Crawling"
+          },
+          {
+            "id": "o1",
+            "text": "Ranking"
+          },
+          {
+            "id": "o2",
+            "text": "Searching"
+          },
+          {
+            "id": "o3",
+            "text": "Indexing"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Tahap pertama disebut Crawling, dilakukan oleh crawler/bot."
+      },
+      {
+        "qid": 8,
+        "type": "mc",
+        "prompt": "Ketika pengguna mengetikkan kata kunci dan mesin pencari mencari data paling sesuai dari indeks, tahap ini disebut...",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Searching"
+          },
+          {
+            "id": "o1",
+            "text": "Crawling"
+          },
+          {
+            "id": "o2",
+            "text": "Ranking"
+          },
+          {
+            "id": "o3",
+            "text": "Caching"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Tahap ini disebut Searching."
+      },
+      {
+        "qid": 9,
+        "type": "mc",
+        "prompt": "Mesin pencarian yang terintegrasi langsung dengan sistem operasi Windows adalah...",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Bing"
+          },
+          {
+            "id": "o1",
+            "text": "Google"
+          },
+          {
+            "id": "o2",
+            "text": "DuckDuckGo"
+          },
+          {
+            "id": "o3",
+            "text": "Baidu"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Bing terintegrasi dengan Windows sehingga banyak digunakan pengguna Windows."
+      },
+      {
+        "qid": 10,
+        "type": "mc",
+        "prompt": "Manakah pernyataan yang benar tentang mesin pencarian?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Mesin pencarian membantu menemukan informasi berdasarkan kata kunci yang dimasukkan pengguna"
+          },
+          {
+            "id": "o1",
+            "text": "Mesin pencarian dapat mengetik dokumen secara otomatis"
+          },
+          {
+            "id": "o2",
+            "text": "Mesin pencarian hanya bisa digunakan di komputer, tidak di ponsel"
+          },
+          {
+            "id": "o3",
+            "text": "Mesin pencarian tidak dapat menampilkan gambar"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Fungsi utama mesin pencarian adalah membantu menemukan informasi berdasarkan kata kunci."
+      }
+    ],
+    "2": [
+      {
+        "qid": 11,
+        "type": "find_sentence",
+        "prompt": "Temukan kalimat yang menjelaskan tahap \"Ranking\" pada cara kerja mesin pencari!",
+        "passage": [
+          "A. Mesin pencarian mengirim crawler untuk menjelajahi website setiap hari.",
+          "B. Informasi yang ditemukan disimpan ke dalam indeks besar.",
+          "C. Hasil diurutkan berdasarkan kesesuaian isi, kualitas, kecepatan, popularitas, dan keamanan website.",
+          "D. Pengguna mengetikkan kata kunci ke kotak pencarian."
+        ],
+        "correctId": "s2",
+        "explanation": "Kalimat C menjelaskan bahwa hasil diurutkan (ranking) berdasarkan beberapa faktor."
+      },
+      {
+        "qid": 12,
+        "type": "find_sentence",
+        "prompt": "Temukan kalimat yang menjadi kelebihan DuckDuckGo!",
+        "passage": [
+          "A. DuckDuckGo memiliki hasil pencarian gambar terbanyak di dunia.",
+          "B. DuckDuckGo tidak melacak aktivitas pengguna dan tidak menyimpan riwayat pencarian.",
+          "C. DuckDuckGo dimiliki oleh Microsoft.",
+          "D. DuckDuckGo hanya dapat digunakan di Tiongkok."
+        ],
+        "correctId": "s1",
+        "explanation": "Kelebihan utama DuckDuckGo adalah tidak melacak aktivitas dan tidak menyimpan riwayat pencarian."
+      },
+      {
+        "qid": 13,
+        "type": "find_sentence",
+        "prompt": "Temukan kalimat yang menjelaskan tips agar hasil pencarian lebih tepat!",
+        "passage": [
+          "A. Gunakan kata kunci yang jelas dan spesifik, misalnya \"Fungsi RAM pada komputer\" bukan hanya \"Komputer\".",
+          "B. Selalu percaya hasil pencarian pertama yang muncul.",
+          "C. Gunakan satu kata saja agar hasil lebih banyak.",
+          "D. Abaikan tanggal terbit informasi."
+        ],
+        "correctId": "s0",
+        "explanation": "Menggunakan kata kunci yang jelas dan spesifik membuat hasil pencarian lebih tepat."
+      },
+      {
+        "qid": 14,
+        "type": "find_sentence",
+        "prompt": "Temukan kalimat yang termasuk kesalahan umum saat mencari informasi!",
+        "passage": [
+          "A. Membandingkan informasi dari beberapa sumber terpercaya.",
+          "B. Memeriksa tanggal terbit sebuah artikel.",
+          "C. Langsung percaya hasil pertama tanpa membaca isinya.",
+          "D. Mengutamakan situs pemerintah dan universitas."
+        ],
+        "correctId": "s2",
+        "explanation": "Langsung percaya hasil pertama tanpa membaca isinya adalah kesalahan umum yang sering dilakukan."
+      },
+      {
+        "qid": 15,
+        "type": "find_sentence",
+        "prompt": "Temukan kalimat yang menjelaskan mengapa Bing cocok untuk pengguna tertentu!",
+        "passage": [
+          "A. Bing sangat baik untuk pencarian berbahasa Mandarin.",
+          "B. Bing terintegrasi dengan Windows sehingga cocok untuk pengguna Windows.",
+          "C. Bing tidak melacak aktivitas pengguna sama sekali.",
+          "D. Bing adalah mesin pencari tertua di dunia."
+        ],
+        "correctId": "s1",
+        "explanation": "Bing terintegrasi dengan Windows, sehingga cocok digunakan oleh pengguna Windows."
+      },
+      {
+        "qid": 16,
+        "type": "find_sentence",
+        "prompt": "Temukan kalimat yang menjelaskan tahap \"Crawling\" pada cara kerja mesin pencari!",
+        "passage": [
+          "A. Bot menjelajahi jutaan halaman website untuk menemukan informasi baru.",
+          "B. Hasil pencarian diurutkan berdasarkan relevansi.",
+          "C. Data disimpan ke dalam indeks besar.",
+          "D. Pengguna mengetikkan kata kunci di kotak pencarian."
+        ],
+        "correctId": "s0",
+        "explanation": "Kalimat A menjelaskan proses Crawling, yaitu bot menjelajahi website."
+      },
+      {
+        "qid": 17,
+        "type": "find_sentence",
+        "prompt": "Temukan kalimat yang menjelaskan ciri khas Google sebagai mesin pencarian!",
+        "passage": [
+          "A. Google tidak dapat menampilkan hasil pencarian gambar.",
+          "B. Google adalah mesin pencarian paling banyak digunakan di dunia dan mendukung pencarian gambar, video, dan suara.",
+          "C. Google hanya bisa diakses di Tiongkok.",
+          "D. Google tidak memiliki fitur pencarian suara."
+        ],
+        "correctId": "s1",
+        "explanation": "Google dikenal sebagai mesin pencarian paling banyak digunakan dan mendukung berbagai jenis pencarian."
+      },
+      {
+        "qid": 18,
+        "type": "find_sentence",
+        "prompt": "Temukan kalimat yang menjelaskan mengapa kita perlu membandingkan beberapa sumber sebelum mempercayai sebuah informasi!",
+        "passage": [
+          "A. Karena setiap sumber pasti memberikan informasi yang sama persis.",
+          "B. Karena membandingkan sumber membantu memastikan kebenaran dan mengurangi risiko informasi yang keliru.",
+          "C. Karena membandingkan sumber membuat pencarian menjadi lebih lambat.",
+          "D. Karena hanya sumber pertama yang perlu dipercaya."
+        ],
+        "correctId": "s1",
+        "explanation": "Membandingkan beberapa sumber membantu memastikan kebenaran informasi."
+      },
+      {
+        "qid": 19,
+        "type": "find_sentence",
+        "prompt": "Temukan kalimat yang menjelaskan kelebihan Baidu sebagai mesin pencarian!",
+        "passage": [
+          "A. Baidu adalah mesin pencarian terbesar di Tiongkok dan populer untuk pencarian berbahasa Mandarin.",
+          "B. Baidu tidak dapat diakses melalui ponsel.",
+          "C. Baidu adalah mesin pencarian tertua di dunia.",
+          "D. Baidu dimiliki oleh Google."
+        ],
+        "correctId": "s0",
+        "explanation": "Baidu adalah mesin pencarian terbesar di Tiongkok, populer untuk pencarian berbahasa Mandarin."
+      },
+      {
+        "qid": 20,
+        "type": "find_sentence",
+        "prompt": "Temukan kalimat yang menjelaskan pentingnya memeriksa tanggal terbit sebuah artikel!",
+        "passage": [
+          "A. Tanggal terbit tidak penting karena informasi lama maupun baru selalu sama-sama akurat.",
+          "B. Memeriksa tanggal terbit membantu memastikan informasi masih relevan dan tidak sudah usang.",
+          "C. Tanggal terbit hanya penting untuk artikel olahraga.",
+          "D. Artikel tanpa tanggal terbit pasti selalu benar."
+        ],
+        "correctId": "s1",
+        "explanation": "Memeriksa tanggal terbit membantu memastikan informasi masih relevan."
+      }
+    ],
+    "3": [
+      {
+        "qid": 21,
+        "type": "riddle",
+        "prompt": "Aku adalah mesin pencarian paling banyak digunakan di dunia, mendukung pencarian gambar, video, dan suara — namun aku juga mengumpulkan data penggunamu. Siapakah aku?",
+        "hints": [
+          "Petunjuk 1: Aku diciptakan oleh salah satu perusahaan teknologi terbesar dunia.",
+          "Petunjuk 2: Nama saya berasal dari kata \"googol\", sebuah angka sangat besar."
+        ],
+        "answer": "google",
+        "explanation": "Aku adalah Google, mesin pencarian paling populer di dunia."
+      },
+      {
+        "qid": 22,
+        "type": "riddle",
+        "prompt": "Aku adalah tahap kedua dalam cara kerja mesin pencari, tempat halaman web yang ditemukan disimpan ke dalam sebuah database besar. Siapakah aku?",
+        "hints": [
+          "Petunjuk 1: Namaku mirip dengan daftar isi sebuah buku.",
+          "Petunjuk 2: Aku terjadi setelah proses crawling."
+        ],
+        "answer": "indexing",
+        "explanation": "Aku adalah Indexing, proses penyimpanan data ke dalam indeks."
+      },
+      {
+        "qid": 23,
+        "type": "riddle",
+        "prompt": "Aku sebuah teknik pencarian yang memungkinkanmu mencari gambar serupa hanya dengan mengunggah sebuah gambar, bukan mengetik kata kunci. Siapakah aku?",
+        "hints": [
+          "Petunjuk 1: Namaku mengandung kata \"image\".",
+          "Petunjuk 2: Aku sering dipakai untuk memeriksa keaslian sebuah foto."
+        ],
+        "answer": "reverse image search",
+        "explanation": "Aku adalah Reverse Image Search, teknik mencari gambar berdasarkan gambar itu sendiri."
+      },
+      {
+        "qid": 24,
+        "type": "riddle",
+        "prompt": "Aku adalah undang-undang Indonesia yang lahir tahun 2008 dan mengatur segala aktivitas informasi dan transaksi elektronik. Siapakah aku?",
+        "hints": [
+          "Petunjuk 1: Singkatanku terdiri dari tiga huruf.",
+          "Petunjuk 2: Aku sudah dua kali direvisi, terakhir tahun 2024."
+        ],
+        "answer": "uu ite",
+        "explanation": "Aku adalah UU ITE, Undang-Undang Informasi dan Transaksi Elektronik."
+      },
+      {
+        "qid": 25,
+        "type": "riddle",
+        "prompt": "Aku adalah tahap pertama dalam cara kerja mesin pencari, ketika bot menjelajahi jutaan halaman website untuk menemukan informasi baru. Siapakah aku?",
+        "hints": [
+          "Petunjuk 1: Namaku terdengar seperti hewan yang merayap.",
+          "Petunjuk 2: Aku dilakukan oleh bot atau crawler."
+        ],
+        "answer": "crawling",
+        "explanation": "Aku adalah Crawling, tahap penjelajahan website oleh bot."
+      },
+      {
+        "qid": 26,
+        "type": "riddle",
+        "prompt": "Aku adalah tahap terakhir dalam cara kerja mesin pencari, tempat hasil pencarian diurutkan berdasarkan kesesuaian dan kualitas. Siapakah aku?",
+        "hints": [
+          "Petunjuk 1: Namaku berkaitan dengan urutan atau peringkat.",
+          "Petunjuk 2: Aku menentukan hasil mana yang muncul paling atas."
+        ],
+        "answer": "ranking",
+        "explanation": "Aku adalah Ranking, tahap pengurutan hasil pencarian."
+      },
+      {
+        "qid": 27,
+        "type": "riddle",
+        "prompt": "Aku adalah mesin pencarian yang terintegrasi langsung dengan sistem operasi Windows. Siapakah aku?",
+        "hints": [
+          "Petunjuk 1: Aku dibuat oleh Microsoft.",
+          "Petunjuk 2: Namaku terdiri dari empat huruf."
+        ],
+        "answer": "bing",
+        "explanation": "Aku adalah Bing, mesin pencarian buatan Microsoft."
+      },
+      {
+        "qid": 28,
+        "type": "riddle",
+        "prompt": "Aku adalah mesin pencarian terbesar di Tiongkok yang populer untuk pencarian berbahasa Mandarin. Siapakah aku?",
+        "hints": [
+          "Petunjuk 1: Namaku terdiri dari lima huruf.",
+          "Petunjuk 2: Aku bukan Google, Bing, atau DuckDuckGo."
+        ],
+        "answer": "baidu",
+        "explanation": "Aku adalah Baidu, mesin pencarian terbesar di Tiongkok."
+      },
+      {
+        "qid": 29,
+        "type": "riddle",
+        "prompt": "Aku adalah jejak yang tertinggal dari setiap unggahan, komentar, dan bagikan yang kamu lakukan di internet. Siapakah aku?",
+        "hints": [
+          "Petunjuk 1: Namaku terdiri dari dua kata dalam bahasa Inggris.",
+          "Petunjuk 2: Aku sulit dihapus sepenuhnya."
+        ],
+        "answer": "digital footprint",
+        "explanation": "Aku adalah Digital Footprint, jejak digital dari aktivitas daringmu."
+      },
+      {
+        "qid": 30,
+        "type": "riddle",
+        "prompt": "Aku adalah kebiasaan bijak yang dianjurkan sebelum menyebarkan informasi: memeriksa kebenarannya terlebih dahulu. Orang sering menyingkatku dengan ungkapan \"___ sebelum sharing\". Siapakah aku?",
+        "hints": [
+          "Petunjuk 1: Kata pertamanya berhubungan dengan menyaring sesuatu.",
+          "Petunjuk 2: Ungkapan lengkapnya adalah \"Saring sebelum sharing\"."
+        ],
+        "answer": "saring",
+        "explanation": "Aku adalah \"Saring\", seperti dalam ungkapan \"Saring sebelum Sharing\"."
+      }
+    ],
+    "4": [
+      {
+        "qid": 31,
+        "type": "word_order",
+        "prompt": "Susunlah kata-kata berikut menjadi kalimat yang benar tentang pengertian mesin pencarian!",
+        "words": [
+          "Mesin",
+          "pencarian",
+          "membantu",
+          "pengguna",
+          "menemukan",
+          "informasi",
+          "di",
+          "internet"
+        ],
+        "correctSentence": "Mesin pencarian membantu pengguna menemukan informasi di internet",
+        "explanation": "Kalimat yang benar: \"Mesin pencarian membantu pengguna menemukan informasi di internet\"."
+      },
+      {
+        "qid": 32,
+        "type": "word_order",
+        "prompt": "Susunlah kata-kata berikut menjadi kalimat yang benar tentang tips pencarian!",
+        "words": [
+          "Gunakan",
+          "kata",
+          "kunci",
+          "yang",
+          "jelas",
+          "dan",
+          "spesifik"
+        ],
+        "correctSentence": "Gunakan kata kunci yang jelas dan spesifik",
+        "explanation": "Kalimat yang benar: \"Gunakan kata kunci yang jelas dan spesifik\"."
+      },
+      {
+        "qid": 33,
+        "type": "word_order",
+        "prompt": "Susunlah kata-kata berikut menjadi kalimat tentang berpikir kritis di dunia digital!",
+        "words": [
+          "Periksa",
+          "kebenaran",
+          "informasi",
+          "sebelum",
+          "membagikannya",
+          "kepada",
+          "orang",
+          "lain"
+        ],
+        "correctSentence": "Periksa kebenaran informasi sebelum membagikannya kepada orang lain",
+        "explanation": "Kalimat yang benar: \"Periksa kebenaran informasi sebelum membagikannya kepada orang lain\"."
+      },
+      {
+        "qid": 34,
+        "type": "word_order",
+        "prompt": "Susunlah kata-kata berikut menjadi kalimat tentang UU ITE!",
+        "words": [
+          "UU",
+          "ITE",
+          "disahkan",
+          "oleh",
+          "DPR",
+          "pada",
+          "tahun",
+          "2008"
+        ],
+        "correctSentence": "UU ITE disahkan oleh DPR pada tahun 2008",
+        "explanation": "Kalimat yang benar: \"UU ITE disahkan oleh DPR pada tahun 2008\"."
+      },
+      {
+        "qid": 35,
+        "type": "word_order",
+        "prompt": "Susunlah kata-kata berikut menjadi kalimat yang benar tentang tahap Crawling!",
+        "words": [
+          "Crawler",
+          "menjelajahi",
+          "jutaan",
+          "website",
+          "untuk",
+          "menemukan",
+          "informasi",
+          "baru"
+        ],
+        "correctSentence": "Crawler menjelajahi jutaan website untuk menemukan informasi baru",
+        "explanation": "Kalimat yang benar: \"Crawler menjelajahi jutaan website untuk menemukan informasi baru\"."
+      },
+      {
+        "qid": 36,
+        "type": "word_order",
+        "prompt": "Susunlah kata-kata berikut menjadi kalimat yang benar tentang tahap Ranking!",
+        "words": [
+          "Ranking",
+          "mengurutkan",
+          "hasil",
+          "pencarian",
+          "berdasarkan",
+          "kesesuaian",
+          "dan",
+          "kualitas"
+        ],
+        "correctSentence": "Ranking mengurutkan hasil pencarian berdasarkan kesesuaian dan kualitas",
+        "explanation": "Kalimat yang benar: \"Ranking mengurutkan hasil pencarian berdasarkan kesesuaian dan kualitas\"."
+      },
+      {
+        "qid": 37,
+        "type": "word_order",
+        "prompt": "Susunlah kata-kata berikut menjadi kalimat tentang jejak digital!",
+        "words": [
+          "Setiap",
+          "aktivitas",
+          "daring",
+          "meninggalkan",
+          "jejak",
+          "digital",
+          "yang",
+          "sulit",
+          "dihapus"
+        ],
+        "correctSentence": "Setiap aktivitas daring meninggalkan jejak digital yang sulit dihapus",
+        "explanation": "Kalimat yang benar: \"Setiap aktivitas daring meninggalkan jejak digital yang sulit dihapus\"."
+      },
+      {
+        "qid": 38,
+        "type": "word_order",
+        "prompt": "Susunlah kata-kata berikut menjadi kalimat tentang kebiasaan bijak sebelum menyebarkan informasi!",
+        "words": [
+          "Saring",
+          "informasi",
+          "terlebih",
+          "dahulu",
+          "sebelum",
+          "membagikannya",
+          "kepada",
+          "orang",
+          "lain"
+        ],
+        "correctSentence": "Saring informasi terlebih dahulu sebelum membagikannya kepada orang lain",
+        "explanation": "Kalimat yang benar: \"Saring informasi terlebih dahulu sebelum membagikannya kepada orang lain\"."
+      },
+      {
+        "qid": 39,
+        "type": "word_order",
+        "prompt": "Susunlah kata-kata berikut menjadi kalimat tentang keamanan digital!",
+        "words": [
+          "Jangan",
+          "sembarangan",
+          "membagikan",
+          "kata",
+          "sandi",
+          "kepada",
+          "orang",
+          "lain"
+        ],
+        "correctSentence": "Jangan sembarangan membagikan kata sandi kepada orang lain",
+        "explanation": "Kalimat yang benar: \"Jangan sembarangan membagikan kata sandi kepada orang lain\"."
+      },
+      {
+        "qid": 40,
+        "type": "word_order",
+        "prompt": "Susunlah kata-kata berikut menjadi kalimat tentang etika digital!",
+        "words": [
+          "Hormatilah",
+          "hak",
+          "cipta",
+          "karya",
+          "orang",
+          "lain",
+          "di",
+          "internet"
+        ],
+        "correctSentence": "Hormatilah hak cipta karya orang lain di internet",
+        "explanation": "Kalimat yang benar: \"Hormatilah hak cipta karya orang lain di internet\"."
+      }
+    ],
+    "5": [
+      {
+        "qid": 41,
+        "type": "match",
+        "prompt": "Pasangkan istilah cara kerja mesin pencari dengan pengertiannya!",
+        "pairs": [
+          {
+            "id": "p0",
+            "term": "Crawling",
+            "def": "Menjelajahi internet menggunakan bot untuk menemukan halaman web baru"
+          },
+          {
+            "id": "p1",
+            "term": "Indexing",
+            "def": "Menyimpan halaman web yang ditemukan ke dalam database besar"
+          },
+          {
+            "id": "p2",
+            "term": "Searching",
+            "def": "Mencari data paling sesuai dari indeks saat pengguna mengetik kata kunci"
+          },
+          {
+            "id": "p3",
+            "term": "Ranking",
+            "def": "Mengurutkan hasil pencarian berdasarkan kesesuaian dan kualitas"
+          }
+        ],
+        "explanation": "Semua pasangan berhasil dicocokkan dengan benar."
+      },
+      {
+        "qid": 42,
+        "type": "match",
+        "prompt": "Pasangkan mesin pencarian dengan ciri khasnya!",
+        "pairs": [
+          {
+            "id": "p0",
+            "term": "Google",
+            "def": "Mesin pencarian paling banyak digunakan di dunia"
+          },
+          {
+            "id": "p1",
+            "term": "Bing",
+            "def": "Terintegrasi dengan sistem operasi Windows"
+          },
+          {
+            "id": "p2",
+            "term": "DuckDuckGo",
+            "def": "Tidak melacak aktivitas dan riwayat pencarian pengguna"
+          },
+          {
+            "id": "p3",
+            "term": "Baidu",
+            "def": "Mesin pencarian terbesar di Tiongkok"
+          }
+        ],
+        "explanation": "Semua pasangan berhasil dicocokkan dengan benar."
+      },
+      {
+        "qid": 43,
+        "type": "match",
+        "prompt": "Pasangkan elemen literasi digital dengan penjelasannya!",
+        "pairs": [
+          {
+            "id": "p0",
+            "term": "Berpikir Kritis",
+            "def": "Menyeleksi sumber dan memeriksa kebenaran informasi"
+          },
+          {
+            "id": "p1",
+            "term": "Etika Digital",
+            "def": "Memikirkan dampak sebelum membagikan informasi"
+          },
+          {
+            "id": "p2",
+            "term": "Keamanan Digital",
+            "def": "Menjaga data pribadi dan waspada penipuan daring"
+          },
+          {
+            "id": "p3",
+            "term": "Tanggung Jawab Hukum",
+            "def": "Memahami konsekuensi hukum dari jejak digital"
+          }
+        ],
+        "explanation": "Semua pasangan berhasil dicocokkan dengan benar."
+      },
+      {
+        "qid": 44,
+        "type": "match",
+        "prompt": "Pasangkan tahap cara kerja mesin pencari dengan fungsinya!",
+        "pairs": [
+          {
+            "id": "p0",
+            "term": "Crawling",
+            "def": "Menjelajahi website menggunakan bot"
+          },
+          {
+            "id": "p1",
+            "term": "Searching",
+            "def": "Mencari data paling sesuai saat pengguna mengetik kata kunci"
+          },
+          {
+            "id": "p2",
+            "term": "Ranking",
+            "def": "Mengurutkan hasil berdasarkan kesesuaian dan kualitas"
+          }
+        ],
+        "explanation": "Semua pasangan berhasil dicocokkan dengan benar."
+      },
+      {
+        "qid": 45,
+        "type": "match",
+        "prompt": "Pasangkan istilah keamanan digital dengan penjelasannya!",
+        "pairs": [
+          {
+            "id": "p0",
+            "term": "Phishing",
+            "def": "Penipuan untuk mencuri data melalui situs atau pesan palsu"
+          },
+          {
+            "id": "p1",
+            "term": "Kata Sandi Kuat",
+            "def": "Kombinasi huruf, angka, dan simbol yang sulit ditebak"
+          },
+          {
+            "id": "p2",
+            "term": "Metadata",
+            "def": "Informasi tersembunyi pada file seperti waktu dan lokasi"
+          }
+        ],
+        "explanation": "Semua pasangan berhasil dicocokkan dengan benar."
+      },
+      {
+        "qid": 46,
+        "type": "match",
+        "prompt": "Pasangkan istilah UU ITE dengan penjelasannya!",
+        "pairs": [
+          {
+            "id": "p0",
+            "term": "UU ITE",
+            "def": "Undang-undang yang mengatur informasi dan transaksi elektronik"
+          },
+          {
+            "id": "p1",
+            "term": "Pasal 27A",
+            "def": "Mengatur ketentuan pencemaran nama baik"
+          },
+          {
+            "id": "p2",
+            "term": "Pasal 16A",
+            "def": "Mengatur perlindungan anak di ruang digital"
+          }
+        ],
+        "explanation": "Semua pasangan berhasil dicocokkan dengan benar."
+      },
+      {
+        "qid": 47,
+        "type": "match",
+        "prompt": "Pasangkan mesin pencarian dengan negara/ciri asalnya!",
+        "pairs": [
+          {
+            "id": "p0",
+            "term": "Google",
+            "def": "Amerika Serikat, paling banyak digunakan di dunia"
+          },
+          {
+            "id": "p1",
+            "term": "Baidu",
+            "def": "Tiongkok, populer untuk bahasa Mandarin"
+          },
+          {
+            "id": "p2",
+            "term": "Yandex",
+            "def": "Rusia, populer di kawasan Eropa Timur"
+          }
+        ],
+        "explanation": "Semua pasangan berhasil dicocokkan dengan benar."
+      },
+      {
+        "qid": 48,
+        "type": "match",
+        "prompt": "Pasangkan sikap bijak dengan situasi digital yang dihadapi!",
+        "pairs": [
+          {
+            "id": "p0",
+            "term": "Menerima pesan berantai mencurigakan",
+            "def": "Memeriksa kebenarannya sebelum menyebarkan"
+          },
+          {
+            "id": "p1",
+            "term": "Menemukan gambar mencurigakan",
+            "def": "Melakukan reverse image search"
+          },
+          {
+            "id": "p2",
+            "term": "Diminta membagikan kata sandi",
+            "def": "Menolak dan menjaga kerahasiaan data"
+          }
+        ],
+        "explanation": "Semua pasangan berhasil dicocokkan dengan benar."
+      },
+      {
+        "qid": 49,
+        "type": "match",
+        "prompt": "Pasangkan komponen literasi digital dengan contoh penerapannya!",
+        "pairs": [
+          {
+            "id": "p0",
+            "term": "Berpikir Kritis",
+            "def": "Memeriksa beberapa sumber sebelum percaya suatu informasi"
+          },
+          {
+            "id": "p1",
+            "term": "Etika Digital",
+            "def": "Menghormati privasi dan karya orang lain saat online"
+          },
+          {
+            "id": "p2",
+            "term": "Tanggung Jawab Hukum",
+            "def": "Memahami bahwa unggahan di internet dapat berdampak hukum"
+          }
+        ],
+        "explanation": "Semua pasangan berhasil dicocokkan dengan benar."
+      },
+      {
+        "qid": 50,
+        "type": "match",
+        "prompt": "Pasangkan mesin pencarian dengan ciri utamanya!",
+        "pairs": [
+          {
+            "id": "p0",
+            "term": "DuckDuckGo",
+            "def": "Tidak melacak aktivitas dan tidak menyimpan riwayat pencarian"
+          },
+          {
+            "id": "p1",
+            "term": "Bing",
+            "def": "Terintegrasi dengan sistem operasi Windows"
+          },
+          {
+            "id": "p2",
+            "term": "Yandex",
+            "def": "Populer digunakan di kawasan Rusia dan Eropa Timur"
+          }
+        ],
+        "explanation": "Semua pasangan berhasil dicocokkan dengan benar."
+      }
+    ],
+    "6": [
+      {
+        "qid": 51,
+        "type": "tf",
+        "prompt": "Reverse Image Search memungkinkan kita mencari gambar berdasarkan gambar itu sendiri, bukan hanya kata kunci.",
+        "correctId": "true",
+        "explanation": "Benar, Reverse Image Search mencari gambar serupa berdasarkan gambar yang diunggah."
+      },
+      {
+        "qid": 52,
+        "type": "tf",
+        "prompt": "Metadata sebuah gambar tidak pernah bisa dihapus atau diubah oleh siapa pun.",
+        "correctId": "false",
+        "explanation": "Salah, metadata justru bisa dihapus atau diubah sehingga perlu dinilai secara kritis."
+      },
+      {
+        "qid": 53,
+        "type": "tf",
+        "prompt": "Judul yang terlalu sensasional pada sebuah berita otomatis berarti berita tersebut pasti salah.",
+        "correctId": "false",
+        "explanation": "Salah, judul sensasional tidak selalu berarti salah, tetapi tetap perlu diperiksa kebenarannya."
+      },
+      {
+        "qid": 54,
+        "type": "tf",
+        "prompt": "Kebebasan mengakses informasi digital harus disertai tanggung jawab menggunakan informasi tersebut dengan bijak.",
+        "correctId": "true",
+        "explanation": "Benar, kebebasan dan tanggung jawab adalah dua konsep yang saling terkait di dunia digital."
+      },
+      {
+        "qid": 55,
+        "type": "tf",
+        "prompt": "Menyebarkan informasi tanpa memeriksa kebenarannya terlebih dahulu adalah kebiasaan yang dianjurkan agar informasi cepat tersebar.",
+        "correctId": "false",
+        "explanation": "Salah, kita harus memeriksa kebenaran informasi sebelum membagikannya (saring sebelum sharing)."
+      },
+      {
+        "qid": 56,
+        "type": "tf",
+        "prompt": "Situs dengan domain .go.id, .sch.id, .ac.id, dan .org umumnya lebih dapat dipercaya sebagai sumber informasi.",
+        "correctId": "true",
+        "explanation": "Benar, situs pemerintah, sekolah, universitas, dan organisasi terpercaya sebaiknya diutamakan."
+      },
+      {
+        "qid": 57,
+        "type": "tf",
+        "prompt": "Bing adalah mesin pencarian yang dibuat oleh Google.",
+        "correctId": "false",
+        "explanation": "Salah, Bing dibuat oleh Microsoft, bukan Google."
+      },
+      {
+        "qid": 58,
+        "type": "tf",
+        "prompt": "Reverse Image Search dapat membantu menelusuri asal-usul sebuah gambar di internet.",
+        "correctId": "true",
+        "explanation": "Benar, teknik ini membantu menelusuri sumber dan keaslian gambar."
+      },
+      {
+        "qid": 59,
+        "type": "tf",
+        "prompt": "Jejak digital yang sudah kita tinggalkan di internet dapat dihapus sepenuhnya dengan mudah kapan saja.",
+        "correctId": "false",
+        "explanation": "Salah, jejak digital sulit dihapus sepenuhnya karena bisa sudah disalin atau disebarkan orang lain."
+      },
+      {
+        "qid": 60,
+        "type": "tf",
+        "prompt": "UU ITE pertama kali disahkan pada tahun 2008 dan telah mengalami revisi.",
+        "correctId": "true",
+        "explanation": "Benar, UU ITE disahkan tahun 2008 dan telah direvisi beberapa kali, terakhir tahun 2024."
+      }
+    ],
+    "7": [
+      {
+        "qid": 61,
+        "type": "mc",
+        "prompt": "Kamu memasuki lorong pertama Gunung Tantangan. Apa istilah untuk kemampuan mencari, memilih, dan memanfaatkan informasi digital secara kritis dan bertanggung jawab?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Menjelajah Informasi Digital dengan Bijak"
+          },
+          {
+            "id": "o1",
+            "text": "Reverse Image Search"
+          },
+          {
+            "id": "o2",
+            "text": "Clickbait"
+          },
+          {
+            "id": "o3",
+            "text": "Crawling"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Kemampuan ini disebut menjelajah informasi digital dengan bijak (literasi digital)."
+      },
+      {
+        "qid": 62,
+        "type": "mc",
+        "prompt": "Lorong berikutnya menguji risiko dunia digital. Apa bahaya utama jika kita tidak bijak dan waspada saat online?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Pencurian data pribadi dan penipuan (phishing)"
+          },
+          {
+            "id": "o1",
+            "text": "Bertambahnya kuota internet"
+          },
+          {
+            "id": "o2",
+            "text": "Baterai ponsel cepat habis"
+          },
+          {
+            "id": "o3",
+            "text": "Koneksi internet menjadi lebih cepat"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Ketidakwaspadaan dapat menyebabkan pencurian data pribadi dan penipuan daring seperti phishing."
+      },
+      {
+        "qid": 63,
+        "type": "mc",
+        "prompt": "Sebuah pesan berbunyi \"SEBARKAN SEKARANG JUGA!!!\" muncul di depanmu. Sikap paling bijak adalah...",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Memeriksa kebenarannya terlebih dahulu sebelum membagikan"
+          },
+          {
+            "id": "o1",
+            "text": "Langsung menyebarkannya ke semua orang"
+          },
+          {
+            "id": "o2",
+            "text": "Mengabaikannya tanpa membaca isi pesan"
+          },
+          {
+            "id": "o3",
+            "text": "Membagikannya hanya ke teman dekat"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Pesan yang memaksa segera disebarkan justru perlu diperiksa dulu kebenarannya."
+      },
+      {
+        "qid": 64,
+        "type": "mc",
+        "prompt": "Kamu menemukan sebuah gambar mencurigakan. Apa langkah pertama untuk memeriksa keasliannya?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Melakukan reverse image search"
+          },
+          {
+            "id": "o1",
+            "text": "Langsung membagikannya ke media sosial"
+          },
+          {
+            "id": "o2",
+            "text": "Mengubah warna gambar"
+          },
+          {
+            "id": "o3",
+            "text": "Mengunduh ulang gambar tersebut"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Reverse image search membantu menelusuri asal-usul dan keaslian sebuah gambar."
+      },
+      {
+        "qid": 65,
+        "type": "mc",
+        "prompt": "Jejak yang tertinggal dari setiap unggahan, komentar, dan bagikan di internet disebut...",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Digital footprint (jejak digital)"
+          },
+          {
+            "id": "o1",
+            "text": "Cache browser"
+          },
+          {
+            "id": "o2",
+            "text": "Bandwidth"
+          },
+          {
+            "id": "o3",
+            "text": "Cookie"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Aktivitas daring meninggalkan jejak digital yang sulit dihapus dan dapat berdampak di masa depan."
+      },
+      {
+        "qid": 66,
+        "type": "mc",
+        "prompt": "Kamu mendapati sebuah situs meminta kata sandi akun media sosialmu melalui tautan mencurigakan. Sikap paling bijak adalah...",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Tidak memasukkan kata sandi dan melaporkan tautan tersebut"
+          },
+          {
+            "id": "o1",
+            "text": "Langsung memasukkan kata sandi agar cepat selesai"
+          },
+          {
+            "id": "o2",
+            "text": "Membagikan tautan tersebut ke teman-teman"
+          },
+          {
+            "id": "o3",
+            "text": "Mengklik tautan berulang kali untuk memastikan"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Tautan mencurigakan yang meminta kata sandi biasanya merupakan upaya phishing, sehingga harus dihindari dan dilaporkan."
+      },
+      {
+        "qid": 67,
+        "type": "mc",
+        "prompt": "Manakah contoh perilaku yang mencerminkan etika digital yang baik?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Menghormati hak cipta dan mencantumkan sumber saat mengutip karya orang lain"
+          },
+          {
+            "id": "o1",
+            "text": "Menyalin karya orang lain tanpa izin"
+          },
+          {
+            "id": "o2",
+            "text": "Menyebarkan informasi pribadi orang lain tanpa izin"
+          },
+          {
+            "id": "o3",
+            "text": "Menghina pengguna lain di kolom komentar"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Etika digital yang baik mencakup menghormati hak cipta dan privasi orang lain."
+      },
+      {
+        "qid": 68,
+        "type": "mc",
+        "prompt": "Apa yang sebaiknya dilakukan sebelum membagikan sebuah artikel berita ke media sosial?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Membaca keseluruhan isi dan memeriksa kebenarannya terlebih dahulu"
+          },
+          {
+            "id": "o1",
+            "text": "Membagikannya langsung berdasarkan judul saja"
+          },
+          {
+            "id": "o2",
+            "text": "Mengubah judul agar lebih menarik perhatian"
+          },
+          {
+            "id": "o3",
+            "text": "Menghapus nama penulis aslinya"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Sebelum membagikan berita, sebaiknya baca dan periksa kebenaran isinya terlebih dahulu."
+      },
+      {
+        "qid": 69,
+        "type": "mc",
+        "prompt": "Kamu menerima pesan berhadiah yang meminta data pribadi dan kata sandi akun bank. Ini adalah contoh...",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Phishing (penipuan daring)"
+          },
+          {
+            "id": "o1",
+            "text": "Crawling"
+          },
+          {
+            "id": "o2",
+            "text": "Indexing"
+          },
+          {
+            "id": "o3",
+            "text": "Ranking"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Permintaan data pribadi dan kata sandi melalui iming-iming hadiah adalah ciri khas phishing."
+      },
+      {
+        "qid": 70,
+        "type": "mc",
+        "prompt": "Manakah sikap yang mencerminkan tanggung jawab hukum di dunia digital?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Memahami bahwa unggahan di internet dapat menimbulkan konsekuensi hukum"
+          },
+          {
+            "id": "o1",
+            "text": "Menganggap semua yang diunggah di internet tidak memiliki konsekuensi"
+          },
+          {
+            "id": "o2",
+            "text": "Percaya bahwa UU ITE hanya berlaku bagi orang dewasa"
+          },
+          {
+            "id": "o3",
+            "text": "Mengunggah apa saja tanpa mempertimbangkan dampaknya"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Tanggung jawab hukum berarti memahami bahwa aktivitas digital dapat berdampak dan diatur oleh hukum seperti UU ITE."
+      }
+    ],
+    "8": [
+      {
+        "qid": 71,
+        "type": "mc",
+        "prompt": "KASUS: Pada 2001, seseorang membeli domain mirip situs internet banking BCA dan menyimpan username & password nasabah yang salah ketik alamat. Pelanggaran apa yang paling relevan dari kasus ini?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Pencurian data melalui domain palsu (phishing)"
+          },
+          {
+            "id": "o1",
+            "text": "Pelanggaran hak cipta lagu"
+          },
+          {
+            "id": "o2",
+            "text": "Pelanggaran lalu lintas"
+          },
+          {
+            "id": "o3",
+            "text": "Pencemaran nama baik di blog"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Kasus BCA 2001 adalah kasus pencurian data melalui domain mirip (mengarah ke phishing)."
+      },
+      {
+        "qid": 72,
+        "type": "mc",
+        "prompt": "KASUS: Prita Mulyasari dijerat menggunakan UU ITE setelah membagikan pengalaman buruknya sebagai pasien lewat surat elektronik. Kontroversi apa yang muncul dari kasus ini?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Perdebatan tentang batasan pasal pencemaran nama baik terhadap kebebasan berekspresi"
+          },
+          {
+            "id": "o1",
+            "text": "Pelanggaran hak cipta musik"
+          },
+          {
+            "id": "o2",
+            "text": "Kasus pembajakan film"
+          },
+          {
+            "id": "o3",
+            "text": "Kebocoran data pemerintah"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Kasus ini memicu perdebatan tentang pasal pencemaran nama baik yang dinilai terlalu luas."
+      },
+      {
+        "qid": 73,
+        "type": "mc",
+        "prompt": "BUKTI: Sebelum UU ITE ada pada 2008, kasus kejahatan digital seperti peretasan sulit ditangani. Apa penyebab utamanya menurut materi?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Kekosongan hukum yang jelas untuk kejahatan digital"
+          },
+          {
+            "id": "o1",
+            "text": "Tidak adanya internet di Indonesia"
+          },
+          {
+            "id": "o2",
+            "text": "Tidak ada mesin pencarian saat itu"
+          },
+          {
+            "id": "o3",
+            "text": "Semua kasus digital sudah diatur dengan baik"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Sebelum UU ITE, terjadi kekosongan hukum sehingga kejahatan digital sulit ditangani secara efektif."
+      },
+      {
+        "qid": 74,
+        "type": "mc",
+        "prompt": "ANALISIS: Revisi kedua UU ITE (UU No. 1 Tahun 2024) merampingkan salah satu pasal yang paling banyak dikritik. Pasal apakah itu?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Pasal 27 tentang pencemaran nama baik (\"pasal karet\")"
+          },
+          {
+            "id": "o1",
+            "text": "Pasal tentang hak cipta lagu"
+          },
+          {
+            "id": "o2",
+            "text": "Pasal tentang pajak digital"
+          },
+          {
+            "id": "o3",
+            "text": "Pasal tentang e-commerce"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Pasal 27 (\"pasal karet\") dirampingkan, dan ketentuan pencemaran nama baik dipindahkan ke Pasal 27A."
+      },
+      {
+        "qid": 75,
+        "type": "mc",
+        "prompt": "BUKTI TAMBAHAN: Revisi kedua UU ITE menambahkan Pasal 16A. Perlindungan apa yang diatur pasal ini?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Perlindungan anak di ruang digital"
+          },
+          {
+            "id": "o1",
+            "text": "Perlindungan hak cipta film"
+          },
+          {
+            "id": "o2",
+            "text": "Perlindungan merek dagang"
+          },
+          {
+            "id": "o3",
+            "text": "Perlindungan data perbankan saja"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Pasal 16A mengatur perlindungan anak di ruang digital, termasuk batas usia dan verifikasi pengguna."
+      },
+      {
+        "qid": 76,
+        "type": "mc",
+        "prompt": "KASUS: Seorang pengguna media sosial dilaporkan karena menyebarkan berita bohong (hoaks) yang meresahkan masyarakat. Pasal apa dalam UU ITE yang paling relevan untuk kasus penyebaran berita bohong?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Pasal tentang penyebaran berita bohong yang menimbulkan keonaran"
+          },
+          {
+            "id": "o1",
+            "text": "Pasal tentang hak cipta lagu"
+          },
+          {
+            "id": "o2",
+            "text": "Pasal tentang pajak e-commerce"
+          },
+          {
+            "id": "o3",
+            "text": "Pasal tentang perlindungan merek dagang"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "UU ITE mengatur ketentuan pidana bagi penyebaran berita bohong yang menimbulkan keonaran di masyarakat."
+      },
+      {
+        "qid": 77,
+        "type": "mc",
+        "prompt": "ANALISIS: Mengapa banyak pihak menyebut Pasal 27 UU ITE (sebelum revisi) sebagai \"pasal karet\"?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Karena rumusannya dinilai terlalu luas sehingga dapat ditafsirkan secara berbeda-beda"
+          },
+          {
+            "id": "o1",
+            "text": "Karena pasal tersebut hanya berlaku selama satu tahun"
+          },
+          {
+            "id": "o2",
+            "text": "Karena pasal tersebut tidak pernah digunakan sama sekali"
+          },
+          {
+            "id": "o3",
+            "text": "Karena pasal tersebut hanya mengatur transaksi jual beli"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Istilah \"pasal karet\" muncul karena rumusan pasal dinilai terlalu luas dan multitafsir."
+      },
+      {
+        "qid": 78,
+        "type": "mc",
+        "prompt": "BUKTI: Revisi UU ITE bertujuan untuk menyeimbangkan antara kebebasan berekspresi dan perlindungan hukum. Manakah contoh penerapan tujuan ini?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Memperjelas rumusan pasal pencemaran nama baik agar tidak multitafsir"
+          },
+          {
+            "id": "o1",
+            "text": "Menghapus seluruh ketentuan pidana dalam UU ITE"
+          },
+          {
+            "id": "o2",
+            "text": "Melarang seluruh bentuk media sosial di Indonesia"
+          },
+          {
+            "id": "o3",
+            "text": "Membatasi akses internet hanya untuk pemerintah"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Revisi bertujuan memperjelas rumusan pasal agar tidak menimbulkan multitafsir yang merugikan kebebasan berekspresi."
+      },
+      {
+        "qid": 79,
+        "type": "mc",
+        "prompt": "KASUS: Data pribadi ribuan pengguna sebuah platform bocor dan diperjualbelikan di forum daring. Pelanggaran ini paling berkaitan dengan ketentuan...",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Perlindungan data pribadi dalam UU ITE"
+          },
+          {
+            "id": "o1",
+            "text": "Hak cipta karya seni"
+          },
+          {
+            "id": "o2",
+            "text": "Pajak transaksi elektronik"
+          },
+          {
+            "id": "o3",
+            "text": "Perlindungan merek dagang"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Kebocoran dan jual beli data pribadi berkaitan dengan ketentuan perlindungan data pribadi dalam UU ITE."
+      },
+      {
+        "qid": 80,
+        "type": "mc",
+        "prompt": "ANALISIS: Mengapa literasi digital penting dalam mencegah pelanggaran UU ITE yang tidak disengaja?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Karena pemahaman literasi digital membantu pengguna berpikir kritis dan bertanggung jawab sebelum bertindak di dunia digital"
+          },
+          {
+            "id": "o1",
+            "text": "Karena literasi digital menjamin kecepatan internet lebih tinggi"
+          },
+          {
+            "id": "o2",
+            "text": "Karena literasi digital menghapus semua risiko hukum secara otomatis"
+          },
+          {
+            "id": "o3",
+            "text": "Karena literasi digital hanya diperlukan oleh aparat penegak hukum"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Literasi digital membantu pengguna berpikir kritis dan bertanggung jawab sehingga terhindar dari pelanggaran hukum yang tidak disengaja."
+      }
+    ],
+    "9": [
+      {
+        "qid": 81,
+        "type": "mc",
+        "prompt": "Manakah tahap cara kerja mesin pencari yang bertugas mengurutkan hasil berdasarkan kualitas dan relevansi?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Ranking"
+          },
+          {
+            "id": "o1",
+            "text": "Crawling"
+          },
+          {
+            "id": "o2",
+            "text": "Indexing"
+          },
+          {
+            "id": "o3",
+            "text": "Searching"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Ranking adalah tahap pengurutan hasil pencarian."
+      },
+      {
+        "qid": 82,
+        "type": "tf",
+        "prompt": "Metadata gambar dapat membantu memverifikasi waktu dan lokasi pengambilan sebuah foto.",
+        "correctId": "true",
+        "explanation": "Benar, metadata dapat berisi informasi waktu, lokasi, dan perangkat yang digunakan."
+      },
+      {
+        "qid": 83,
+        "type": "find_sentence",
+        "prompt": "Temukan kalimat yang menjelaskan salah satu elemen \"Keamanan Digital\"!",
+        "passage": [
+          "A. Menyeleksi sumber informasi yang kredibel.",
+          "B. Tidak sembarangan membagikan data pribadi seperti kata sandi.",
+          "C. Menghormati hak cipta karya orang lain.",
+          "D. Mengurutkan hasil pencarian."
+        ],
+        "correctId": "s1",
+        "explanation": "Menjaga data pribadi termasuk dalam elemen Keamanan Digital."
+      },
+      {
+        "qid": 84,
+        "type": "mc",
+        "prompt": "KASUS: UU ITE telah digugat sebanyak lima belas kali ke Mahkamah Konstitusi sejak 2008. Apa makna dari fakta ini?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "UU ITE tergolong undang-undang yang kontroversial sepanjang penerapannya"
+          },
+          {
+            "id": "o1",
+            "text": "UU ITE tidak pernah menimbulkan masalah"
+          },
+          {
+            "id": "o2",
+            "text": "UU ITE hanya berlaku satu tahun"
+          },
+          {
+            "id": "o3",
+            "text": "UU ITE tidak berkaitan dengan kebebasan berekspresi"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Banyaknya gugatan mencerminkan betapa kontroversialnya UU ITE sepanjang sejarah penerapannya."
+      },
+      {
+        "qid": 85,
+        "type": "riddle",
+        "prompt": "Aku adalah pasal baru dalam revisi UU ITE 2024 yang mengatur larangan mengancam orang lain melalui saluran elektronik. Siapakah aku?",
+        "hints": [
+          "Petunjuk 1: Nomorku dekat dengan Pasal 27A.",
+          "Petunjuk 2: Aku membahas ancaman, bukan penghinaan."
+        ],
+        "answer": "pasal 27b",
+        "explanation": "Aku adalah Pasal 27B, mengatur larangan mengancam orang lain melalui saluran elektronik."
+      },
+      {
+        "qid": 86,
+        "type": "tf",
+        "prompt": "Digital footprint (jejak digital) dapat memengaruhi reputasi seseorang di masa depan, misalnya saat melamar pekerjaan.",
+        "correctId": "true",
+        "explanation": "Benar, jejak digital yang tertinggal dapat memengaruhi penilaian orang lain terhadap kita, termasuk saat melamar pekerjaan."
+      },
+      {
+        "qid": 87,
+        "type": "mc",
+        "prompt": "Manakah contoh tindakan yang mencerminkan Keamanan Digital yang baik?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Menggunakan kata sandi yang kuat dan tidak membagikannya ke orang lain"
+          },
+          {
+            "id": "o1",
+            "text": "Menggunakan kata sandi yang sama untuk semua akun agar mudah diingat"
+          },
+          {
+            "id": "o2",
+            "text": "Membagikan kata sandi kepada teman dekat"
+          },
+          {
+            "id": "o3",
+            "text": "Menuliskan kata sandi di tempat umum agar tidak lupa"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Keamanan digital yang baik mencakup penggunaan kata sandi kuat dan menjaga kerahasiaannya."
+      },
+      {
+        "qid": 88,
+        "type": "find_sentence",
+        "prompt": "Temukan kalimat yang menjelaskan mengapa UU ITE terus direvisi!",
+        "passage": [
+          "A. UU ITE direvisi agar dapat menyesuaikan perkembangan teknologi dan menyeimbangkan kebebasan berekspresi dengan kepastian hukum.",
+          "B. UU ITE direvisi karena tidak pernah digunakan.",
+          "C. UU ITE direvisi agar internet menjadi lebih lambat.",
+          "D. UU ITE direvisi untuk menghapus seluruh mesin pencarian."
+        ],
+        "correctId": "s0",
+        "explanation": "UU ITE direvisi untuk menyesuaikan perkembangan teknologi serta menyeimbangkan kebebasan berekspresi dan kepastian hukum."
+      },
+      {
+        "qid": 89,
+        "type": "riddle",
+        "prompt": "Aku adalah kebiasaan memeriksa kebenaran sebuah informasi dengan membandingkan beberapa sumber terpercaya sebelum mempercayainya. Siapakah aku?",
+        "hints": [
+          "Petunjuk 1: Aku adalah bagian dari sikap berpikir kritis.",
+          "Petunjuk 2: Lawan dariku adalah langsung percaya tanpa memeriksa."
+        ],
+        "answer": "verifikasi",
+        "explanation": "Aku adalah Verifikasi, kebiasaan memeriksa kebenaran informasi dari beberapa sumber terpercaya."
+      },
+      {
+        "qid": 90,
+        "type": "mc",
+        "prompt": "Sang Penjaga Gerbang menantangmu: Apa yang sebaiknya dilakukan jika menemukan akun media sosial palsu yang mencatut namamu?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Melaporkan akun tersebut ke platform terkait"
+          },
+          {
+            "id": "o1",
+            "text": "Membiarkannya saja tanpa tindakan"
+          },
+          {
+            "id": "o2",
+            "text": "Membuat akun palsu balasan untuk membalas"
+          },
+          {
+            "id": "o3",
+            "text": "Membagikan data pribadi tambahan ke akun tersebut"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Melaporkan akun palsu ke platform adalah langkah bijak dan bertanggung jawab."
+      }
+    ],
+    "10": [
+      {
+        "qid": 91,
+        "type": "mc",
+        "prompt": "THE FINAL CHALLENGE — Sang Penjaga Terakhir bertanya: Apa tujuan utama dari kemampuan \"Menjelajah Informasi Digital dengan Bijak\"?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Menjadi pengguna digital yang kritis, bertanggung jawab, aman, dan beretika"
+          },
+          {
+            "id": "o1",
+            "text": "Mempercepat koneksi internet"
+          },
+          {
+            "id": "o2",
+            "text": "Menambah jumlah followers media sosial"
+          },
+          {
+            "id": "o3",
+            "text": "Menghindari penggunaan mesin pencari sama sekali"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Tujuannya adalah menjadi pengguna digital yang kritis, bertanggung jawab, aman, dan beretika."
+      },
+      {
+        "qid": 92,
+        "type": "tf",
+        "prompt": "Sebelum menyebarkan informasi, langkah bijak yang dianjurkan materi adalah: Cari → Baca → Periksa → Bandingkan → Gunakan/Bagikan.",
+        "correctId": "true",
+        "explanation": "Benar, itulah alur sederhana menjelajah informasi digital dengan bijak."
+      },
+      {
+        "qid": 93,
+        "type": "match",
+        "prompt": "Pasangkan ciri sumber gambar/video kredibel dengan penjelasannya!",
+        "pairs": [
+          {
+            "id": "p0",
+            "term": "Reverse Image Search",
+            "def": "Menelusuri asal-usul gambar melalui mesin pencari"
+          },
+          {
+            "id": "p1",
+            "term": "Memeriksa Metadata",
+            "def": "Melihat informasi tersembunyi seperti waktu dan lokasi pengambilan"
+          },
+          {
+            "id": "p2",
+            "term": "Mengevaluasi Kualitas",
+            "def": "Memeriksa resolusi, ketajaman, dan kebenaran visual sebuah gambar"
+          }
+        ],
+        "explanation": "Semua pasangan berhasil dicocokkan dengan benar."
+      },
+      {
+        "qid": 94,
+        "type": "mc",
+        "prompt": "Revisi UU ITE diharmonisasikan dengan KUHP Nasional yang mulai berlaku penuh pada tahun...",
+        "options": [
+          {
+            "id": "o0",
+            "text": "2026"
+          },
+          {
+            "id": "o1",
+            "text": "2008"
+          },
+          {
+            "id": "o2",
+            "text": "2016"
+          },
+          {
+            "id": "o3",
+            "text": "2024"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Revisi UU ITE diharmonisasikan dengan KUHP Nasional (UU No.1/2023) yang berlaku penuh 2026."
+      },
+      {
+        "qid": 95,
+        "type": "word_order",
+        "prompt": "Susun kata-kata Sang Penjaga Terakhir menjadi kalimat penutup petualanganmu!",
+        "words": [
+          "Kebijaksanaan",
+          "digital",
+          "dimulai",
+          "dari",
+          "berpikir",
+          "kritis",
+          "dan",
+          "bertanggung",
+          "jawab"
+        ],
+        "correctSentence": "Kebijaksanaan digital dimulai dari berpikir kritis dan bertanggung jawab",
+        "explanation": "Kalimat yang benar: \"Kebijaksanaan digital dimulai dari berpikir kritis dan bertanggung jawab\"."
+      },
+      {
+        "qid": 96,
+        "type": "mc",
+        "prompt": "Setelah menaklukkan Ruang Harta Pengetahuan, gelar tertinggi apa yang layak kamu sandang?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "🏆 MASTER PENGETAHUAN"
+          },
+          {
+            "id": "o1",
+            "text": "🥉 PEMULA"
+          },
+          {
+            "id": "o2",
+            "text": "🥈 PENJELAJAH"
+          },
+          {
+            "id": "o3",
+            "text": "🥇 PETUALANG CERDAS"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Menyelesaikan seluruh petualangan memberikanmu gelar tertinggi: MASTER PENGETAHUAN."
+      },
+      {
+        "qid": 97,
+        "type": "tf",
+        "prompt": "Reverse Image Search dan pemeriksaan metadata adalah dua cara untuk memverifikasi keaslian sebuah gambar atau video.",
+        "correctId": "true",
+        "explanation": "Benar, kedua teknik ini membantu memverifikasi keaslian dan asal-usul gambar/video."
+      },
+      {
+        "qid": 98,
+        "type": "mc",
+        "prompt": "Sang Penjaga Terakhir bertanya: Mengapa keseimbangan antara kebebasan berekspresi dan tanggung jawab hukum penting di dunia digital?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Agar masyarakat dapat berekspresi secara bebas namun tetap menghormati hak dan keamanan orang lain"
+          },
+          {
+            "id": "o1",
+            "text": "Agar semua orang bebas melakukan apa saja tanpa batasan"
+          },
+          {
+            "id": "o2",
+            "text": "Agar UU ITE dapat dihapuskan sepenuhnya"
+          },
+          {
+            "id": "o3",
+            "text": "Agar internet hanya digunakan oleh pemerintah"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Keseimbangan ini penting agar kebebasan berekspresi tetap terjaga tanpa merugikan hak dan keamanan orang lain."
+      },
+      {
+        "qid": 99,
+        "type": "riddle",
+        "prompt": "Aku adalah sikap yang menggabungkan berpikir kritis, etika digital, keamanan digital, dan tanggung jawab hukum menjadi satu kemampuan utuh. Siapakah aku?",
+        "hints": [
+          "Petunjuk 1: Aku adalah judul besar dari seluruh petualangan ini.",
+          "Petunjuk 2: Namaku diawali dengan kata \"Menjelajah\"."
+        ],
+        "answer": "menjelajah informasi digital dengan bijak",
+        "explanation": "Aku adalah Menjelajah Informasi Digital dengan Bijak, kemampuan utuh yang menggabungkan seluruh elemen literasi digital."
+      },
+      {
+        "qid": 100,
+        "type": "mc",
+        "prompt": "Setelah menguasai seluruh materi petualangan ini, sikap apa yang paling mencerminkan pengguna digital yang bijak?",
+        "options": [
+          {
+            "id": "o0",
+            "text": "Kritis dalam menyaring informasi, beretika, menjaga keamanan data, dan bertanggung jawab secara hukum"
+          },
+          {
+            "id": "o1",
+            "text": "Mempercayai semua informasi yang ditemukan di internet"
+          },
+          {
+            "id": "o2",
+            "text": "Membagikan seluruh data pribadi demi mendapatkan followers"
+          },
+          {
+            "id": "o3",
+            "text": "Mengabaikan aturan hukum karena merasa aman di dunia maya"
+          }
+        ],
+        "correctId": "o0",
+        "explanation": "Pengguna digital yang bijak bersikap kritis, beretika, menjaga keamanan, dan bertanggung jawab secara hukum."
+      }
+    ]
+  },
+  "settings": {
+    "correctPts": 100,
+    "penaltyMin": 50,
+    "penaltyMax": 100,
+    "hintPenalty": 15,
+    "kkm": 71,
+    "audioOn": true
+  }
+}

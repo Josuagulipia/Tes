@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Harta Pengetahuan — Petualangan Belajar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest-deep:#0e3a3a;
+  --forest:#154f4d;
+  --gold:#e6a63b;
+  --gold-bright:#ffc65c;
+  --parchment:#f3e8cf;
+  --parchment-dim:#e4d5ae;
+  --mystic:#3d2c5c;
+  --ember:#c1440e;
+  --ok:#3fa66a;
+  --bad:#c1440e;
+  --ink:#22201a;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 18px;
+  font-size: clamp(14px, 1.1vw + 8px, 18px);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;height:100%;}
+body{
+  font-family:'Nunito',sans-serif;
+  background:
+    radial-gradient(1200px 700px at 15% -10%, #1c5c56 0%, transparent 60%),
+    radial-gradient(1000px 800px at 100% 0%, #2a4a63 0%, transparent 55%),
+    linear-gradient(180deg, var(--forest-deep), #0a2b2b 60%, #081f22);
+  color:var(--parchment);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+h1,h2,h3,.display{font-family:'Cinzel',serif;letter-spacing:.02em;}
+button{font-family:'Nunito',sans-serif;cursor:pointer;}
+.screen{display:none;min-height:100vh;padding:1rem;}
+.screen.active{display:flex;flex-direction:column;}
+.wrap{max-width:960px;margin:0 auto;width:100%;}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;text-align:center;}
+
+/* ---------- Buttons ---------- */
+.btn{
+  min-height:48px;padding:.8em 1.6em;border-radius:14px;border:none;
+  font-weight:800;font-size:1rem;color:var(--ink);
+  background:linear-gradient(180deg,var(--gold-bright),var(--gold));
+  box-shadow:0 6px 0 #a86e17, 0 10px 18px rgba(0,0,0,.35);
+  transition:transform .08s ease;
+}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 #a86e17;}
+.btn.secondary{background:linear-gradient(180deg,#4a7c78,#2f5f5b);color:var(--parchment);box-shadow:0 6px 0 #1c3f3c, 0 10px 18px rgba(0,0,0,.3);}
+.btn.ghost{background:transparent;color:var(--parchment);border:2px solid var(--parchment-dim);box-shadow:none;}
+.btn.danger{background:linear-gradient(180deg,#e0653a,var(--ember));box-shadow:0 6px 0 #7c2c08;color:#fff;}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none;}
+.btn-row{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;}
+
+/* ---------- Splash ---------- */
+#screen-splash{
+  background:
+   radial-gradient(600px 400px at 50% 20%, rgba(230,166,59,.25), transparent 70%);
+}
+.compass{font-size:5rem;animation:spin 8s linear infinite;filter:drop-shadow(0 0 20px rgba(230,166,59,.6));}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.title-hero{font-size:clamp(2rem,6vw,3.4rem);margin:.3em 0 .1em;color:var(--gold-bright);text-shadow:0 4px 18px rgba(0,0,0,.5);}
+.subtitle{opacity:.85;max-width:36em;line-height:1.6;}
+
+/* ---------- Profile ---------- */
+.card{background:rgba(20,50,48,.75);border:1px solid rgba(230,166,59,.35);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow);backdrop-filter:blur(6px);}
+.field{margin:.8rem 0;text-align:left;}
+.field label{display:block;font-weight:700;margin-bottom:.3rem;font-size:.9rem;color:var(--gold-bright);}
+.field input,.field select,.field textarea{
+  width:100%;padding:.7em .9em;border-radius:10px;border:2px solid rgba(230,166,59,.4);
+  background:rgba(243,232,207,.95);color:var(--ink);font-family:inherit;font-size:1rem;
+}
+.field textarea{resize:vertical;min-height:120px;}
+
+/* ---------- Top bar in-game ---------- */
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap;padding:.6rem .3rem;}
+.pill{background:rgba(0,0,0,.28);border:1px solid rgba(230,166,59,.3);border-radius:999px;padding:.4em .9em;font-weight:800;font-size:.9rem;display:flex;align-items:center;gap:.4em;}
+.hearts{letter-spacing:.15em;}
+.progressbar-outer{width:100%;height:14px;background:rgba(0,0,0,.35);border-radius:999px;overflow:hidden;border:1px solid rgba(230,166,59,.3);}
+.progressbar-inner{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-bright));transition:width .5s ease;}
+
+/* ---------- Map ---------- */
+.map-title{text-align:center;margin:.4rem 0 1rem;}
+.trail{position:relative;padding:1rem .5rem 3rem;}
+.trail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:6px;background:repeating-linear-gradient(180deg,var(--gold) 0 10px, transparent 10px 20px);transform:translateX(-50%);opacity:.5;}
+.node-row{display:flex;justify-content:center;margin:1.1rem 0;position:relative;}
+.node-row.left{justify-content:flex-start;padding-left:6%;}
+.node-row.right{justify-content:flex-end;padding-right:6%;}
+.node{
+  width:min(78vw,320px);display:flex;align-items:center;gap:.8rem;
+  background:rgba(20,50,48,.85);border:2px solid rgba(230,166,59,.35);border-radius:16px;
+  padding:.8rem 1rem;box-shadow:var(--shadow);position:relative;z-index:1;text-align:left;
+}
+.node.locked{opacity:.55;filter:grayscale(.6);}
+.node.done{border-color:var(--ok);}
+.node.current{border-color:var(--gold-bright);box-shadow:0 0 0 4px rgba(230,166,59,.25),var(--shadow);}
+.node-icon{font-size:2.2rem;width:2.2em;text-align:center;flex-shrink:0;}
+.node-info{flex:1;}
+.node-info .lvl-name{font-weight:800;font-size:1rem;}
+.node-info .lvl-sub{font-size:.78rem;opacity:.8;}
+.node-status{font-size:1.3rem;}
+
+/* ---------- Level play area ---------- */
+.stage{flex:1;display:flex;flex-direction:column;gap:1rem;padding:.4rem;}
+.story-banner{background:rgba(61,44,92,.55);border:1px solid rgba(230,166,59,.35);border-radius:14px;padding:.8rem 1rem;font-style:italic;font-size:.92rem;}
+.question-card{background:rgba(20,50,48,.85);border:1px solid rgba(230,166,59,.35);border-radius:var(--radius);padding:1.3rem;box-shadow:var(--shadow);}
+.q-meta{display:flex;justify-content:space-between;font-size:.8rem;opacity:.75;margin-bottom:.5rem;font-weight:700;}
+.q-prompt{font-size:clamp(1rem,2.4vw,1.3rem);font-weight:800;margin:.3rem 0 1rem;line-height:1.4;}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+@media (max-width:520px){.options{grid-template-columns:1fr;}}
+.opt-btn{
+  min-height:56px;text-align:left;padding:.8em 1em;border-radius:12px;border:2px solid rgba(230,166,59,.4);
+  background:rgba(243,232,207,.08);color:var(--parchment);font-weight:700;font-size:.98rem;
+  transition:.15s ease;
+}
+.opt-btn:hover{background:rgba(230,166,59,.15);}
+.opt-btn.correct{background:rgba(63,166,106,.35);border-color:var(--ok);}
+.opt-btn.incorrect{background:rgba(193,68,14,.35);border-color:var(--ember);}
+.opt-btn:disabled{pointer-events:none;}
+.passage{background:rgba(0,0,0,.25);border-radius:12px;padding:1rem;line-height:1.9;font-size:.95rem;}
+.passage .sent-btn{background:transparent;border:none;color:inherit;font:inherit;padding:.1em .15em;border-radius:6px;cursor:pointer;}
+.passage .sent-btn:hover{background:rgba(230,166,59,.25);}
+.word-chip{display:inline-block;margin:.25em;padding:.5em 1em;border-radius:10px;background:rgba(230,166,59,.25);border:2px solid var(--gold);font-weight:800;min-height:44px;}
+.word-chip:disabled{opacity:.3;}
+.answer-slot{min-height:3em;background:rgba(0,0,0,.25);border-radius:12px;padding:.8em;margin-bottom:.8rem;font-weight:800;font-size:1.1rem;line-height:1.6;}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+@media (max-width:520px){.match-grid{grid-template-columns:1fr;}}
+.match-col .match-item{display:block;width:100%;margin-bottom:.6rem;text-align:left;}
+.match-item.selected{outline:3px solid var(--gold-bright);}
+.match-item.locked{background:rgba(63,166,106,.35);border-color:var(--ok);pointer-events:none;}
+.feedback{margin-top:1rem;padding:.9rem 1rem;border-radius:12px;font-weight:700;font-size:.95rem;animation:pop .25s ease;}
+.feedback.good{background:rgba(63,166,106,.25);border:1px solid var(--ok);}
+.feedback.bad{background:rgba(193,68,14,.22);border:1px solid var(--ember);}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.riddle-input{width:100%;padding:.8em;border-radius:10px;border:2px solid var(--gold);font-size:1.05rem;background:rgba(243,232,207,.95);color:var(--ink);}
+.hint-box{background:rgba(230,166,59,.15);border:1px dashed var(--gold);border-radius:10px;padding:.6rem .9rem;font-size:.88rem;margin-top:.6rem;}
+
+/* ---------- overlay layers ---------- */
+.overlay{position:fixed;inset:0;background:rgba(6,20,20,.88);display:none;align-items:center;justify-content:center;z-index:50;padding:1rem;}
+.overlay.active{display:flex;}
+.overlay-card{max-width:480px;width:100%;text-align:center;}
+.overlay-card-wide{max-width:640px;text-align:left;}
+.edit-list-row{display:flex;gap:.5rem;align-items:center;margin-bottom:.5rem;}
+.edit-list-row input[type="text"],.edit-list-row input:not([type]){flex:1;padding:.6em .8em;border-radius:8px;border:2px solid rgba(230,166,59,.4);background:rgba(243,232,207,.95);color:var(--ink);font-family:inherit;}
+.edit-list-row .small-btn{flex-shrink:0;}
+.edit-list-row input[type="radio"]{width:20px;height:20px;flex-shrink:0;}
+.key-flash{font-size:5rem;animation:keyPop .9s ease;}
+@keyframes keyPop{0%{transform:scale(.2) rotate(-25deg);opacity:0}55%{transform:scale(1.25) rotate(10deg);opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
+.sparkle{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+
+/* ---------- Achievement / results ---------- */
+.badge-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;}
+.badge{background:rgba(20,50,48,.7);border:1px solid rgba(230,166,59,.3);border-radius:14px;padding:1rem;text-align:center;}
+.badge.locked{opacity:.35;filter:grayscale(1);}
+.badge .b-icon{font-size:2.4rem;}
+.result-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin:1.2rem 0;}
+.stat-box{background:rgba(0,0,0,.25);border-radius:12px;padding:.9rem;}
+.stat-box .num{font-family:'Cinzel',serif;font-size:1.6rem;color:var(--gold-bright);}
+.stat-box .lbl{font-size:.78rem;opacity:.8;}
+
+/* ---------- Teacher dashboard ---------- */
+.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+.tab-btn{padding:.6em 1.1em;border-radius:10px;border:1px solid rgba(230,166,59,.4);background:rgba(0,0,0,.25);color:var(--parchment);font-weight:700;}
+.tab-btn.active{background:var(--gold);color:var(--ink);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+table{width:100%;border-collapse:collapse;font-size:.85rem;}
+th,td{padding:.5em .6em;border-bottom:1px solid rgba(230,166,59,.25);text-align:left;}
+.q-row-actions{display:flex;gap:.4rem;}
+.q-row-actions button{padding:.3em .7em;font-size:.8rem;border-radius:8px;}
+.small-btn{padding:.4em .8em;font-size:.82rem;border-radius:8px;}
+.level-select-scroll{display:flex;gap:.5rem;overflow-x:auto;padding:.4rem 0 .8rem;}
+.level-select-scroll .tab-btn{flex-shrink:0;}
+.mini-note{font-size:.78rem;opacity:.75;margin-top:.4rem;}
+
+/* utility */
+.hidden{display:none !important;}
+.row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;}
+.spacer{flex:1;}
+a.link-btn{color:var(--gold-bright);text-decoration:underline;cursor:pointer;font-weight:700;}
+@media (min-width:900px){.wide{max-width:1100px;}}
+</style>
+</head>
+<body>
+
+<!-- ================= SPLASH ================= -->
+<div id="screen-splash" class="screen active">
+  <div class="center wrap">
+    <div class="compass">🧭</div>
+    <h1 class="title-hero">HARTA PENGETAHUAN</h1>
+    <p class="subtitle">Di sebuah dunia misterius, tersembunyi sebuah Harta Pengetahuan yang hanya dapat ditemukan oleh petualang yang mampu melewati sepuluh wilayah penuh tantangan. Setiap wilayah dijaga oleh teka-teki dan ujian yang berbeda. Kumpulkan Kunci Pengetahuan untuk membuka gerbang selanjutnya — apakah kamu mampu mencapai Ruang Harta?</p>
+    <div class="btn-row" style="margin-top:1.4rem">
+      <button class="btn" onclick="goStudentStart()">🚀 Mulai Petualangan</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PROFILE / LOGIN SISWA ================= -->
+<div id="screen-profile" class="screen">
+  <div class="center wrap">
+    <div class="card" style="max-width:420px;width:100%">
+      <div style="font-size:2.4rem">👤</div>
+      <h2>Login Petualang</h2>
+      <p style="opacity:.8;font-size:.85rem">Nama digunakan sebagai kunci unik untuk menyimpan progresmu di perangkat ini. <i>(Guru: ketik "Guru" pada kolom Nama untuk masuk ke Dashboard Guru.)</i></p>
+      <div class="field">
+        <label>Nama</label>
+        <input id="inputName" placeholder="Contoh: Jhosua" maxlength="24">
+      </div>
+      <div class="field">
+        <label>Kelas</label>
+        <input id="inputKelas" placeholder="Contoh: XI IPA 2" maxlength="20">
+      </div>
+      <div class="field">
+        <label>Tanggal</label>
+        <input id="inputTanggal" type="date" maxlength="20">
+      </div>
+      <div class="field">
+        <label>Nomor Absen (opsional)</label>
+        <input id="inputAbsen" placeholder="Contoh: 17" maxlength="10">
+      </div>
+      <p id="profileLoginError" class="mini-note" style="color:var(--ember);display:none"></p>
+      <div class="btn-row" style="margin-top:1rem">
+        <button class="btn" onclick="startAdventure()">Mulai Petualangan 🗺️</button>
+      </div>
+      <div class="btn-row" style="margin-top:.6rem">
+        <a class="link-btn" style="font-size:.85rem" onclick="showRules('screen-profile')">📜 Baca Aturan Permainan dahulu</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= WELCOME BACK ================= -->
+<div id="screen-welcome-back" class="screen">
+  <div class="center wrap">
+    <div class="card" style="max-width:420px">
+      <div style="font-size:2.4rem">🧭</div>
+      <h2>SELAMAT DATANG KEMBALI!</h2>
+      <p id="wbName" style="font-weight:800;color:var(--gold-bright)"></p>
+      <div class="result-stats" style="text-align:left">
+        <div class="stat-box"><div class="num" id="wbLevel">-</div><div class="lbl">LEVEL TERAKHIR</div></div>
+        <div class="stat-box"><div class="num" id="wbScore">-</div><div class="lbl">SKOR</div></div>
+        <div class="stat-box"><div class="num" id="wbKeys">-</div><div class="lbl">KUNCI</div></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" onclick="continueAdventure()">▶️ Lanjutkan Petualangan</button>
+        <button class="btn ghost" onclick="confirmRestart()">🔄 Mulai Dari Awal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MAIN MENU (student) ================= -->
+<div id="screen-menu" class="screen">
+  <div class="wrap">
+    <div class="topbar">
+      <div class="pill">👤 <span id="menuName">-</span></div>
+      <div class="row">
+        <button class="btn small-btn ghost" onclick="toggleAudio()"><span id="audioIcon">🔊</span></button>
+      </div>
+    </div>
+    <div class="center">
+      <h1 class="title-hero" style="font-size:2rem">PETUALANGAN</h1>
+      <div class="btn-row" style="flex-direction:column;width:100%;max-width:320px">
+        <button class="btn" onclick="openMap()">▶️ Lanjutkan</button>
+        <button class="btn secondary" onclick="openMap()">🗺️ Peta Petualangan</button>
+        <button class="btn secondary" onclick="showAchievements()">🏆 Prestasi</button>
+        <button class="btn secondary" onclick="openMap()">📊 Progress</button>
+        <button class="btn secondary" onclick="showRules('screen-menu')">📜 Aturan Permainan</button>
+        <button class="btn ghost" onclick="showScreen('screen-settings')">⚙️ Pengaturan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MAP ================= -->
+<div id="screen-map" class="screen">
+  <div class="wrap">
+    <div class="topbar">
+      <button class="btn ghost small-btn" onclick="showScreen('screen-menu')">← Menu</button>
+      <div class="pill">🔑 <span id="mapKeys">0</span>/10</div>
+      <div class="pill">⭐ <span id="mapScore">0</span></div>
+    </div>
+    <div style="margin:.6rem 0 1rem">
+      <div class="row" style="justify-content:space-between;font-size:.8rem;font-weight:700;margin-bottom:.3rem">
+        <span>PETUALANGANMU</span><span id="mapPercent">0%</span>
+      </div>
+      <div class="progressbar-outer"><div class="progressbar-inner" id="mapProgressBar" style="width:0%"></div></div>
+    </div>
+    <h2 class="map-title">🗺️ Peta Petualangan</h2>
+    <div class="trail" id="trailContainer"></div>
+  </div>
+</div>
+
+<!-- ================= LEVEL INTRO ================= -->
+<div id="screen-level-intro" class="screen">
+  <div class="center wrap">
+    <div class="card" style="max-width:480px">
+      <div id="liIcon" style="font-size:3rem"></div>
+      <h2 id="liName"></h2>
+      <p id="liSub" style="opacity:.85;font-size:.9rem"></p>
+      <div class="story-banner" id="liStory" style="text-align:left"></div>
+      <div class="row" style="justify-content:center;margin-top:1rem;gap:1.2rem">
+        <div class="pill">❓ <span id="liQCount"></span> soal</div>
+      </div>
+      <p class="mini-note">⚠️ Tidak ada sistem nyawa — setiap jawaban salah akan mengurangi poin, jadi jawablah dengan cermat!</p>
+      <div class="btn-row" style="margin-top:1.2rem">
+        <button class="btn" onclick="beginLevel()">Mulai Tantangan ⚔️</button>
+        <button class="btn ghost" onclick="showScreen('screen-map')">Kembali</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= LEVEL PLAY ================= -->
+<div id="screen-level" class="screen">
+  <div class="wrap wide">
+    <div class="topbar">
+      <button class="btn ghost small-btn" onclick="quitToMap()">← Keluar</button>
+      <div class="pill">⭐ <span id="playScore">0</span></div>
+      <button class="btn small-btn secondary" onclick="useHint()">💡 Petunjuk</button>
+    </div>
+    <div class="progressbar-outer" style="margin-bottom:.6rem"><div class="progressbar-inner" id="qProgressBar" style="width:0%"></div></div>
+    <div class="stage">
+      <div class="story-banner" id="playLevelLabel"></div>
+      <div class="question-card" id="questionArea"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ACHIEVEMENTS ================= -->
+<div id="screen-achievements" class="screen">
+  <div class="wrap">
+    <div class="topbar">
+      <button class="btn ghost small-btn" onclick="showScreen('screen-menu')">← Menu</button>
+      <h2 style="margin:0">🏆 Prestasi</h2>
+      <div style="width:70px"></div>
+    </div>
+    <div class="badge-grid" id="badgeGrid"></div>
+  </div>
+</div>
+
+<!-- ================= FINAL RESULTS ================= -->
+<div id="screen-final" class="screen">
+  <div class="center wrap">
+    <div class="card" style="max-width:480px">
+      <div style="font-size:3rem">🎉</div>
+      <h1 class="display" style="color:var(--gold-bright)">PETUALANGAN SELESAI!</h1>
+      <p>Selamat, <b id="finalName"></b>! Kamu telah berhasil melewati seluruh tantangan.</p>
+      <div class="stat-box" style="margin-bottom:1rem">
+        <div class="num" id="finalNilai" style="font-size:2.4rem">0</div>
+        <div class="lbl">🎓 NILAI AKHIR (skala 100)</div>
+        <div id="finalStatus" style="margin-top:.4rem;font-weight:800;font-size:1.05rem"></div>
+      </div>
+      <div class="result-stats">
+        <div class="stat-box"><div class="num" id="finalKeys">10/10</div><div class="lbl">🔑 KUNCI</div></div>
+        <div class="stat-box"><div class="num" id="finalScore">0</div><div class="lbl">⭐ POIN</div></div>
+        <div class="stat-box"><div class="num" id="finalTitle">-</div><div class="lbl">🏆 GELAR</div></div>
+        <div class="stat-box"><div class="num" id="finalTime">-</div><div class="lbl">⏱️ WAKTU</div></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" onclick="restartFromScratch()">🔄 Main Lagi</button>
+        <button class="btn secondary" onclick="showScreen('screen-map')">🗺️ Lihat Peta</button>
+        <button class="btn secondary" onclick="showAchievements()">🏆 Prestasi</button>
+        <button class="btn ghost" onclick="window.print()">🖨️ Cetak / Simpan Hasil</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SETTINGS ================= -->
+<div id="screen-settings" class="screen">
+  <div class="center wrap">
+    <div class="card" style="max-width:420px">
+      <h2>⚙️ Pengaturan</h2>
+      <div class="field row" style="justify-content:space-between">
+        <label style="margin:0">🔊 Audio</label>
+        <input type="checkbox" id="settingsAudioToggle" onchange="setAudio(this.checked)">
+      </div>
+      <div class="btn-row" style="margin-top:1rem">
+        <button class="btn danger" onclick="confirmRestart()">🗑️ Hapus Progress &amp; Mulai Ulang</button>
+        <button class="btn ghost" onclick="showScreen('screen-menu')">Kembali</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TEACHER DASHBOARD ================= -->
+<div id="screen-teacher" class="screen">
+  <div class="wrap wide">
+    <div class="topbar">
+      <h2 style="margin:0">🧑‍🏫 Dashboard Guru</h2>
+      <button class="btn ghost small-btn" onclick="showScreen('screen-splash')">Keluar</button>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="materi" onclick="switchTeacherTab('materi')">📘 Materi</button>
+      <button class="tab-btn" data-tab="soal" onclick="switchTeacherTab('soal')">📝 Bank Soal</button>
+      <button class="tab-btn" data-tab="pengaturan" onclick="switchTeacherTab('pengaturan')">🎛️ Pengaturan</button>
+      <button class="tab-btn" data-tab="hasil" onclick="switchTeacherTab('hasil')">📊 Hasil Siswa</button>
+    </div>
+
+    <!-- MATERI TAB -->
+    <div class="tab-panel active" id="tab-materi">
+      <div class="card">
+        <div class="field">
+          <label>Judul Materi</label>
+          <input id="materiJudul">
+        </div>
+        <div class="field">
+          <label>Isi Materi</label>
+          <textarea id="materiIsi" style="min-height:220px"></textarea>
+        </div>
+        <div class="row">
+          <button class="btn" onclick="saveMateri()">💾 Simpan Materi</button>
+          <button class="btn secondary" onclick="generateSoalOtomatis()">🪄 Buat Soal Otomatis</button>
+        </div>
+        <p class="mini-note">Soal otomatis dibuat dari kalimat-kalimat pada materi di atas dan ditambahkan ke Bank Soal level yang sedang dipilih. Guru tetap dapat mengedit setiap soal pada tab Bank Soal.</p>
+      </div>
+    </div>
+
+    <!-- SOAL TAB -->
+    <div class="tab-panel" id="tab-soal">
+      <div class="level-select-scroll" id="teacherLevelSelect"></div>
+      <div class="card">
+        <div id="questionBankList"></div>
+        <button class="btn secondary small-btn" style="margin-top:.8rem" onclick="addBlankQuestion()">➕ Tambah Soal</button>
+      </div>
+    </div>
+
+    <!-- PENGATURAN TAB -->
+    <div class="tab-panel" id="tab-pengaturan">
+      <div class="card">
+        <div class="field"><label>Poin Jawaban Benar</label><input type="number" id="setCorrectPts" min="10" max="500"></div>
+        <div class="field"><label>Penalti Jawaban Salah (min)</label><input type="number" id="setPenaltyMin" min="0" max="500"></div>
+        <div class="field"><label>Penalti Jawaban Salah (maks)</label><input type="number" id="setPenaltyMax" min="0" max="500"></div>
+        <div class="field"><label>Batas Nilai Tuntas (KKM)</label><input type="number" id="setKKM" min="0" max="100"></div>
+        <div class="field"><label>Penalti Penggunaan Hint</label><input type="number" id="setHintPenalty" min="0" max="200"></div>
+        <div class="btn-row">
+          <button class="btn" onclick="saveTeacherSettings()">💾 Simpan Perubahan</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">🌐 Publikasikan ke GitHub (agar terlihat di semua HP)</h3>
+        <p style="font-size:.88rem;line-height:1.7;opacity:.9">Materi, Bank Soal, dan Pengaturan yang kamu ubah <b>hanya tersimpan di perangkat/browser ini</b>. Agar semua HP siswa melihat versi terbaru saat membuka link GitHub, lakukan langkah berikut setiap selesai mengedit:</p>
+        <ol style="font-size:.88rem;line-height:1.9;padding-left:1.2rem">
+          <li>Klik tombol <b>"⬇️ Unduh data.json"</b> di bawah ini.</li>
+          <li>Buka repository GitHub kamu, cari file <code>data.json</code> di folder yang sama dengan <code>index.html</code>.</li>
+          <li>Ganti (replace/upload) file <code>data.json</code> lama dengan file hasil unduhan tadi, lalu <b>Commit</b>.</li>
+          <li>Tunggu 1–2 menit, lalu minta siswa membuka ulang link-nya (refresh) — soal terbaru akan otomatis termuat.</li>
+        </ol>
+        <div class="btn-row">
+          <button class="btn" onclick="downloadPublishedData()">⬇️ Unduh data.json</button>
+          <button class="btn ghost" onclick="reloadFromPublished()">🔄 Muat Ulang dari data.json</button>
+        </div>
+        <p class="mini-note">"Muat Ulang dari data.json" berguna jika kamu ingin membuang draf lokal di HP ini dan memakai versi yang sudah dipublikasikan di GitHub.</p>
+      </div>
+    </div>
+
+    <!-- HASIL TAB -->
+    <div class="tab-panel" id="tab-hasil">
+      <div class="card">
+        <table>
+          <thead><tr><th>Nama</th><th>Kelas</th><th>Tanggal</th><th>Level</th><th>Poin</th><th>Nilai</th><th>Keterangan</th></tr></thead>
+          <tbody id="hasilSiswaBody"></tbody>
+        </table>
+        <p class="mini-note">Data diambil dari progres seluruh siswa yang pernah login di perangkat ini (LocalStorage), berdasarkan nama+kelas sebagai kunci unik. Untuk hasil lintas perangkat, hubungkan penyimpanan basis data pada versi produksi.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ATURAN PERMAINAN ================= -->
+<div id="screen-rules" class="screen">
+  <div class="wrap">
+    <div class="topbar">
+      <button class="btn ghost small-btn" onclick="closeRules()">← Kembali</button>
+      <h2 style="margin:0">📜 Aturan Permainan</h2>
+      <div style="width:70px"></div>
+    </div>
+    <div class="card" style="text-align:left">
+      <h3 style="margin-top:0">🗺️ Cara Bermain</h3>
+      <p style="font-size:.92rem;line-height:1.7">Jelajahi 10 wilayah/level secara berurutan. Setiap level berisi beberapa soal dengan bentuk yang berbeda-beda (pilihan ganda, isian, mencocokkan, dsb). Jawab soal dengan benar untuk mendapatkan <b>🔑 Kunci Pengetahuan</b> dan membuka level berikutnya. Tidak ada sistem nyawa — setiap jawaban salah akan mengurangi ⭐ Poin, jadi jawablah dengan cermat!</p>
+
+      <h3>⭐ Sistem Poin Bintang</h3>
+      <div class="result-stats" style="margin:0 0 1rem">
+        <div class="stat-box"><div class="num" id="ruleCorrectPts" style="font-size:1.5rem">-</div><div class="lbl">✅ POIN / JAWABAN BENAR</div></div>
+        <div class="stat-box"><div class="num" id="rulePenalty" style="font-size:1.5rem">-</div><div class="lbl">❌ PENALTI JAWABAN SALAH</div></div>
+        <div class="stat-box"><div class="num" id="ruleHintPenalty" style="font-size:1.5rem">-</div><div class="lbl">💡 PENALTI PAKAI PETUNJUK</div></div>
+        <div class="stat-box"><div class="num" id="ruleMaxScore" style="font-size:1.5rem">-</div><div class="lbl">⭐ POIN BINTANG MAKSIMAL</div></div>
+      </div>
+
+      <h3>🎓 Batas Ketuntasan (KKM)</h3>
+      <p style="font-size:.92rem;line-height:1.7">Nilai akhir dihitung dari perbandingan total ⭐ Poin Bintang yang kamu kumpulkan terhadap Poin Bintang maksimal, diubah ke skala 0–100.</p>
+      <div class="result-stats" style="margin:0 0 .6rem">
+        <div class="stat-box"><div class="num" id="ruleKKM" style="font-size:1.6rem;color:var(--gold-bright)">-</div><div class="lbl">🎯 NILAI KKM</div></div>
+        <div class="stat-box"><div class="num" id="ruleStarsNeeded" style="font-size:1.6rem;color:var(--gold-bright)">-</div><div class="lbl">⭐ POIN MINIMAL UNTUK TUNTAS</div></div>
+      </div>
+      <div class="result-stats" style="margin:0">
+        <div class="stat-box" style="border:1px solid var(--ok)"><div class="num" style="font-size:1.1rem;color:var(--ok)">✅ TUNTAS</div><div class="lbl" id="ruleTuntasDesc">-</div></div>
+        <div class="stat-box" style="border:1px solid var(--ember)"><div class="num" style="font-size:1.1rem;color:var(--ember)">❌ BELUM TUNTAS</div><div class="lbl" id="ruleBelumTuntasDesc">-</div></div>
+      </div>
+      <p class="mini-note">Catatan: perhitungan poin minimal bersifat perkiraan karena nilai akhir dibulatkan. Nilai KKM diatur oleh guru dan dapat berubah sewaktu-waktu.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= OVERLAY: EDIT / TAMBAH SOAL ================= -->
+<div class="overlay" id="overlayEditQuestion">
+  <div class="overlay-card overlay-card-wide">
+    <div class="card" style="text-align:left;max-height:80vh;overflow-y:auto">
+      <h2 id="editQTitle" style="margin-top:0">✏️ Edit Soal</h2>
+      <div class="field" id="editQTypeField">
+        <label>Tipe Soal</label>
+        <select id="editQType" onchange="changeEditDraftType(this.value)">
+          <option value="mc">Pilihan Ganda</option>
+          <option value="tf">Benar / Salah</option>
+          <option value="find_sentence">Mencari Kalimat</option>
+          <option value="riddle">Teka-teki</option>
+          <option value="word_order">Susun Kata</option>
+          <option value="match">Pasangkan</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Pertanyaan</label>
+        <textarea id="editQPrompt" style="min-height:70px" oninput="editDraft.prompt=this.value"></textarea>
+      </div>
+      <div id="editQTypeArea"></div>
+      <div class="field">
+        <label>Penjelasan (ditampilkan setelah soal dijawab)</label>
+        <textarea id="editQExplanation" style="min-height:60px" oninput="editDraft.explanation=this.value"></textarea>
+      </div>
+      <div class="btn-row" style="margin-top:1rem">
+        <button class="btn" onclick="saveEditedQuestion()">💾 Simpan Soal</button>
+        <button class="btn ghost" onclick="closeEditQuestionModal()">Batal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= OVERLAY: KEY EARNED ================= -->
+<div class="overlay" id="overlayKey">
+  <div class="overlay-card">
+    <div class="key-flash">🗝️</div>
+    <h2 style="color:var(--gold-bright)">SELAMAT! KAMU MENDAPATKAN KUNCI PENGETAHUAN!</h2>
+    <p id="overlayKeyLevelName"></p>
+    <button class="btn" onclick="closeKeyOverlay()">Lanjutkan Petualangan →</button>
+  </div>
+</div>
+
+<script>
+/* =========================================================================
+   HARTA PENGETAHUAN — game engine
+   ========================================================================= */
+
+const SAVE_KEY = 'hartaPengetahuan_save_v1';
+const SETTINGS_KEY = 'hartaPengetahuan_settings_v1';
+const MATERI_KEY = 'hartaPengetahuan_materi_v1';
+const QBANK_KEY = 'hartaPengetahuan_qbank_v1';
+const STUDENTS_INDEX_KEY = 'hartaPengetahuan_students_index_v1';
+
+/* ---- slug helper untuk kunci unik siswa (nama + kelas) ---- */
+function slugify(str){
+  return (str||'').toString().trim().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') || '-';
+}
+function studentSaveKey(name, kelas){
+  return SAVE_KEY + '__' + slugify(name) + '__' + slugify(kelas);
+}
+function loadStudentsIndex(){
+  const raw = localStorage.getItem(STUDENTS_INDEX_KEY);
+  return raw ? JSON.parse(raw) : [];
+}
+function registerStudentIndex(key, name, kelas, tanggal){
+  const idx = loadStudentsIndex();
+  const existing = idx.find(e=>e.key===key);
+  if(existing){ existing.name=name; existing.kelas=kelas; existing.tanggal=tanggal; }
+  else { idx.push({key, name, kelas, tanggal}); }
+  localStorage.setItem(STUDENTS_INDEX_KEY, JSON.stringify(idx));
+}
+
+const LOCATION_ICONS = ['🏕️','🌲','🏔️','🏰','🌋','🗻','🏯','🌑','🐉','🏆'];
+
+const LEVEL_META = [
+  {id:1, name:'Kamp Awal', location:'Kamp Awal', icon:'🏕️', diff:'Mudah', type:'mc', typeName:'Pilihan Ganda',
+    story:'Petualanganmu dimulai di Kamp Awal. Sang Penjaga Kamp menguji pemahaman dasarmu tentang mesin pencarian sebelum mengizinkanmu masuk ke Hutan Pengetahuan.'},
+  {id:2, name:'Hutan Pengetahuan', location:'Hutan Pengetahuan', icon:'🌲', diff:'Mudah–Sedang', type:'find_sentence', typeName:'Mencari Kalimat',
+    story:'Di dalam rimbunnya Hutan Pengetahuan, jawaban tersembunyi di antara kalimat-kalimat kabut. Temukan kalimat yang tepat untuk membuka jalan.'},
+  {id:3, name:'Pegunungan Misteri', location:'Pegunungan Misteri', icon:'🏔️', diff:'Mudah–Sedang', type:'riddle', typeName:'Teka-teki',
+    story:'Kabut Pegunungan Misteri menyembunyikan identitas rahasia. "Siapakah aku?" — jawab teka-teki Sang Pertapa Gunung untuk melanjutkan.'},
+  {id:4, name:'Jembatan Kata', location:'Jembatan Kata', icon:'🌉', diff:'Mudah–Sedang', type:'word_order', typeName:'Susun Kata',
+    story:'Jembatan tua ini hanya akan berdiri kokoh jika kata-kata yang berserakan disusun kembali menjadi kalimat yang benar.'},
+  {id:5, name:'Kastil Pengetahuan', location:'Kastil Pengetahuan', icon:'🏰', diff:'Sedang', type:'match', typeName:'Pasangkan',
+    story:'Di aula besar Kastil Pengetahuan, istilah-istilah dan maknanya tercerai berai. Pasangkan dengan tepat untuk membuka gerbang menara.'},
+  {id:6, name:'Danau Kebenaran', location:'Danau Kebenaran', icon:'💧', diff:'Sedang', type:'tf', typeName:'Benar / Salah',
+    story:'Air Danau Kebenaran hanya jernih bagi mereka yang mampu membedakan fakta dari jebakan. Tentukan Benar atau Salah dengan bijak.'},
+  {id:7, name:'Gunung Tantangan', location:'Gunung Tantangan', icon:'🌋', diff:'Sulit', type:'mc', typeName:'Labirin Pengetahuan',
+    story:'Lorong berliku Gunung Tantangan penuh persimpangan. Setiap kali kamu melangkah, sebuah pertanyaan menghadangmu — jawab dengan benar untuk terus maju.'},
+  {id:8, name:'Reruntuhan Misteri', location:'Reruntuhan Misteri', icon:'🕵️', diff:'Sangat Sulit', type:'mc', typeName:'Misteri / Detektif',
+    story:'Kamu menemukan reruntuhan penuh petunjuk dan kasus lama. Analisis setiap bukti seperti seorang detektif sebelum menentukan jawaban.'},
+  {id:9, name:'Gerbang Sang Penjaga', location:'Gerbang Sang Penjaga', icon:'👾', diff:'Boss', type:'mixed', typeName:'Challenge Boss',
+    story:'Sang Penjaga Gerbang menggabungkan segala jenis ujian yang pernah kamu hadapi. Bertahanlah — ini adalah gladi terakhir sebelum Ruang Harta.'},
+  {id:10, name:'Ruang Harta Pengetahuan', location:'Ruang Harta Pengetahuan', icon:'🏆', diff:'Final Boss', type:'mixed', typeName:'Final Boss',
+    story:'THE FINAL CHALLENGE. Di hadapanmu berdiri Penjaga Terakhir Harta Pengetahuan. Gunakan seluruh yang telah kau pelajari — inilah ujian penentu.'},
+];
+
+/* ---------------- Default questions, generated from the teacher-supplied
+   material about search engines & wise digital literacy / UU ITE. ---------------- */
+function defaultQuestionBank(){
+return {
+1:[
+ mc('Apa nama layanan/program yang membantu menemukan informasi di internet dengan memasukkan kata kunci?',
+   ['Mesin pencarian (search engine)','Media sosial','Aplikasi chatting','Sistem operasi'],0,
+   'Mesin pencarian membantu pengguna menemukan informasi di internet melalui kata kunci.'),
+ mc('Program khusus yang dikirim mesin pencari untuk menjelajahi jutaan website disebut...',
+   ['Crawler / bot','Firewall','Cache','Cookie'],0,'Tahap ini disebut Crawling, dilakukan oleh crawler atau bot.'),
+ mc('Setelah halaman web ditemukan, informasi disimpan ke dalam database besar yang disebut...',
+   ['Indeks','Folder','Ranking','Cloud pribadi'],0,'Tahap ini disebut Indexing, data disimpan dalam indeks.'),
+ mc('Mesin pencarian mana yang paling terkenal menjaga privasi dan tidak melacak aktivitas pengguna?',
+   ['DuckDuckGo','Google','Baidu','Yahoo'],0,'DuckDuckGo dikenal tidak melacak dan tidak menyimpan riwayat pencarian.'),
+ mc('Baidu adalah mesin pencarian terbesar yang berasal dari negara...',
+   ['Tiongkok','Rusia','Amerika Serikat','Jepang'],0,'Baidu adalah mesin pencarian terbesar di Tiongkok.'),
+ mc('Manakah kelemahan umum dari Google sebagai mesin pencarian?',
+   ['Menampilkan iklan dan mengumpulkan data pengguna','Tidak bisa mencari gambar','Tidak tersedia di ponsel','Tidak dapat diakses di Indonesia'],0,'Google menampilkan iklan pada beberapa hasil dan mengumpulkan data pengguna.'),
+ mc('Tahap pertama dalam cara kerja mesin pencari, yaitu menjelajahi website menggunakan bot, disebut...',
+   ['Crawling','Ranking','Searching','Indexing'],0,'Tahap pertama disebut Crawling, dilakukan oleh crawler/bot.'),
+ mc('Ketika pengguna mengetikkan kata kunci dan mesin pencari mencari data paling sesuai dari indeks, tahap ini disebut...',
+   ['Searching','Crawling','Ranking','Caching'],0,'Tahap ini disebut Searching.'),
+ mc('Mesin pencarian yang terintegrasi langsung dengan sistem operasi Windows adalah...',
+   ['Bing','Google','DuckDuckGo','Baidu'],0,'Bing terintegrasi dengan Windows sehingga banyak digunakan pengguna Windows.'),
+ mc('Manakah pernyataan yang benar tentang mesin pencarian?',
+   ['Mesin pencarian membantu menemukan informasi berdasarkan kata kunci yang dimasukkan pengguna','Mesin pencarian dapat mengetik dokumen secara otomatis','Mesin pencarian hanya bisa digunakan di komputer, tidak di ponsel','Mesin pencarian tidak dapat menampilkan gambar'],0,'Fungsi utama mesin pencarian adalah membantu menemukan informasi berdasarkan kata kunci.'),
+],
+2:[
+ findSentence('Temukan kalimat yang menjelaskan tahap "Ranking" pada cara kerja mesin pencari!',
+  'A. Mesin pencarian mengirim crawler untuk menjelajahi website setiap hari. B. Informasi yang ditemukan disimpan ke dalam indeks besar. C. Hasil diurutkan berdasarkan kesesuaian isi, kualitas, kecepatan, popularitas, dan keamanan website. D. Pengguna mengetikkan kata kunci ke kotak pencarian.',
+  2, 'Kalimat C menjelaskan bahwa hasil diurutkan (ranking) berdasarkan beberapa faktor.'),
+ findSentence('Temukan kalimat yang menjadi kelebihan DuckDuckGo!',
+  'A. DuckDuckGo memiliki hasil pencarian gambar terbanyak di dunia. B. DuckDuckGo tidak melacak aktivitas pengguna dan tidak menyimpan riwayat pencarian. C. DuckDuckGo dimiliki oleh Microsoft. D. DuckDuckGo hanya dapat digunakan di Tiongkok.',
+  1, 'Kelebihan utama DuckDuckGo adalah tidak melacak aktivitas dan tidak menyimpan riwayat pencarian.'),
+ findSentence('Temukan kalimat yang menjelaskan tips agar hasil pencarian lebih tepat!',
+  'A. Gunakan kata kunci yang jelas dan spesifik, misalnya "Fungsi RAM pada komputer" bukan hanya "Komputer". B. Selalu percaya hasil pencarian pertama yang muncul. C. Gunakan satu kata saja agar hasil lebih banyak. D. Abaikan tanggal terbit informasi.',
+  0, 'Menggunakan kata kunci yang jelas dan spesifik membuat hasil pencarian lebih tepat.'),
+ findSentence('Temukan kalimat yang termasuk kesalahan umum saat mencari informasi!',
+  'A. Membandingkan informasi dari beberapa sumber terpercaya. B. Memeriksa tanggal terbit sebuah artikel. C. Langsung percaya hasil pertama tanpa membaca isinya. D. Mengutamakan situs pemerintah dan universitas.',
+  2, 'Langsung percaya hasil pertama tanpa membaca isinya adalah kesalahan umum yang sering dilakukan.'),
+ findSentence('Temukan kalimat yang menjelaskan mengapa Bing cocok untuk pengguna tertentu!',
+  'A. Bing sangat baik untuk pencarian berbahasa Mandarin. B. Bing terintegrasi dengan Windows sehingga cocok untuk pengguna Windows. C. Bing tidak melacak aktivitas pengguna sama sekali. D. Bing adalah mesin pencari tertua di dunia.',
+  1, 'Bing terintegrasi dengan Windows, sehingga cocok digunakan oleh pengguna Windows.'),
+ findSentence('Temukan kalimat yang menjelaskan tahap "Crawling" pada cara kerja mesin pencari!',
+  'A. Bot menjelajahi jutaan halaman website untuk menemukan informasi baru. B. Hasil pencarian diurutkan berdasarkan relevansi. C. Data disimpan ke dalam indeks besar. D. Pengguna mengetikkan kata kunci di kotak pencarian.',
+  0, 'Kalimat A menjelaskan proses Crawling, yaitu bot menjelajahi website.'),
+ findSentence('Temukan kalimat yang menjelaskan ciri khas Google sebagai mesin pencarian!',
+  'A. Google tidak dapat menampilkan hasil pencarian gambar. B. Google adalah mesin pencarian paling banyak digunakan di dunia dan mendukung pencarian gambar, video, dan suara. C. Google hanya bisa diakses di Tiongkok. D. Google tidak memiliki fitur pencarian suara.',
+  1, 'Google dikenal sebagai mesin pencarian paling banyak digunakan dan mendukung berbagai jenis pencarian.'),
+ findSentence('Temukan kalimat yang menjelaskan mengapa kita perlu membandingkan beberapa sumber sebelum mempercayai sebuah informasi!',
+  'A. Karena setiap sumber pasti memberikan informasi yang sama persis. B. Karena membandingkan sumber membantu memastikan kebenaran dan mengurangi risiko informasi yang keliru. C. Karena membandingkan sumber membuat pencarian menjadi lebih lambat. D. Karena hanya sumber pertama yang perlu dipercaya.',
+  1, 'Membandingkan beberapa sumber membantu memastikan kebenaran informasi.'),
+ findSentence('Temukan kalimat yang menjelaskan kelebihan Baidu sebagai mesin pencarian!',
+  'A. Baidu adalah mesin pencarian terbesar di Tiongkok dan populer untuk pencarian berbahasa Mandarin. B. Baidu tidak dapat diakses melalui ponsel. C. Baidu adalah mesin pencarian tertua di dunia. D. Baidu dimiliki oleh Google.',
+  0, 'Baidu adalah mesin pencarian terbesar di Tiongkok, populer untuk pencarian berbahasa Mandarin.'),
+ findSentence('Temukan kalimat yang menjelaskan pentingnya memeriksa tanggal terbit sebuah artikel!',
+  'A. Tanggal terbit tidak penting karena informasi lama maupun baru selalu sama-sama akurat. B. Memeriksa tanggal terbit membantu memastikan informasi masih relevan dan tidak sudah usang. C. Tanggal terbit hanya penting untuk artikel olahraga. D. Artikel tanpa tanggal terbit pasti selalu benar.',
+  1, 'Memeriksa tanggal terbit membantu memastikan informasi masih relevan.'),
+],
+3:[
+ riddle('Aku adalah mesin pencarian paling banyak digunakan di dunia, mendukung pencarian gambar, video, dan suara — namun aku juga mengumpulkan data penggunamu. Siapakah aku?',
+   ['Petunjuk 1: Aku diciptakan oleh salah satu perusahaan teknologi terbesar dunia.','Petunjuk 2: Nama saya berasal dari kata "googol", sebuah angka sangat besar.'],
+   'google', 'Aku adalah Google, mesin pencarian paling populer di dunia.'),
+ riddle('Aku adalah tahap kedua dalam cara kerja mesin pencari, tempat halaman web yang ditemukan disimpan ke dalam sebuah database besar. Siapakah aku?',
+   ['Petunjuk 1: Namaku mirip dengan daftar isi sebuah buku.','Petunjuk 2: Aku terjadi setelah proses crawling.'],
+   'indexing', 'Aku adalah Indexing, proses penyimpanan data ke dalam indeks.'),
+ riddle('Aku sebuah teknik pencarian yang memungkinkanmu mencari gambar serupa hanya dengan mengunggah sebuah gambar, bukan mengetik kata kunci. Siapakah aku?',
+   ['Petunjuk 1: Namaku mengandung kata "image".','Petunjuk 2: Aku sering dipakai untuk memeriksa keaslian sebuah foto.'],
+   'reverse image search', 'Aku adalah Reverse Image Search, teknik mencari gambar berdasarkan gambar itu sendiri.'),
+ riddle('Aku adalah undang-undang Indonesia yang lahir tahun 2008 dan mengatur segala aktivitas informasi dan transaksi elektronik. Siapakah aku?',
+   ['Petunjuk 1: Singkatanku terdiri dari tiga huruf.','Petunjuk 2: Aku sudah dua kali direvisi, terakhir tahun 2024.'],
+   'uu ite', 'Aku adalah UU ITE, Undang-Undang Informasi dan Transaksi Elektronik.'),
+ riddle('Aku adalah tahap pertama dalam cara kerja mesin pencari, ketika bot menjelajahi jutaan halaman website untuk menemukan informasi baru. Siapakah aku?',
+   ['Petunjuk 1: Namaku terdengar seperti hewan yang merayap.','Petunjuk 2: Aku dilakukan oleh bot atau crawler.'],
+   'crawling', 'Aku adalah Crawling, tahap penjelajahan website oleh bot.'),
+ riddle('Aku adalah tahap terakhir dalam cara kerja mesin pencari, tempat hasil pencarian diurutkan berdasarkan kesesuaian dan kualitas. Siapakah aku?',
+   ['Petunjuk 1: Namaku berkaitan dengan urutan atau peringkat.','Petunjuk 2: Aku menentukan hasil mana yang muncul paling atas.'],
+   'ranking', 'Aku adalah Ranking, tahap pengurutan hasil pencarian.'),
+ riddle('Aku adalah mesin pencarian yang terintegrasi langsung dengan sistem operasi Windows. Siapakah aku?',
+   ['Petunjuk 1: Aku dibuat oleh Microsoft.','Petunjuk 2: Namaku terdiri dari empat huruf.'],
+   'bing', 'Aku adalah Bing, mesin pencarian buatan Microsoft.'),
+ riddle('Aku adalah mesin pencarian terbesar di Tiongkok yang populer untuk pencarian berbahasa Mandarin. Siapakah aku?',
+   ['Petunjuk 1: Namaku terdiri dari lima huruf.','Petunjuk 2: Aku bukan Google, Bing, atau DuckDuckGo.'],
+   'baidu', 'Aku adalah Baidu, mesin pencarian terbesar di Tiongkok.'),
+ riddle('Aku adalah jejak yang tertinggal dari setiap unggahan, komentar, dan bagikan yang kamu lakukan di internet. Siapakah aku?',
+   ['Petunjuk 1: Namaku terdiri dari dua kata dalam bahasa Inggris.','Petunjuk 2: Aku sulit dihapus sepenuhnya.'],
+   'digital footprint', 'Aku adalah Digital Footprint, jejak digital dari aktivitas daringmu.'),
+ riddle('Aku adalah kebiasaan bijak yang dianjurkan sebelum menyebarkan informasi: memeriksa kebenarannya terlebih dahulu. Orang sering menyingkatku dengan ungkapan "___ sebelum sharing". Siapakah aku?',
+   ['Petunjuk 1: Kata pertamanya berhubungan dengan menyaring sesuatu.','Petunjuk 2: Ungkapan lengkapnya adalah "Saring sebelum sharing".'],
+   'saring', 'Aku adalah "Saring", seperti dalam ungkapan "Saring sebelum Sharing".'),
+],
+4:[
+ wordOrder('Susunlah kata-kata berikut menjadi kalimat yang benar tentang pengertian mesin pencarian!',
+   ['Mesin','pencarian','membantu','pengguna','menemukan','informasi','di','internet']),
+ wordOrder('Susunlah kata-kata berikut menjadi kalimat yang benar tentang tips pencarian!',
+   ['Gunakan','kata','kunci','yang','jelas','dan','spesifik']),
+ wordOrder('Susunlah kata-kata berikut menjadi kalimat tentang berpikir kritis di dunia digital!',
+   ['Periksa','kebenaran','informasi','sebelum','membagikannya','kepada','orang','lain']),
+ wordOrder('Susunlah kata-kata berikut menjadi kalimat tentang UU ITE!',
+   ['UU','ITE','disahkan','oleh','DPR','pada','tahun','2008']),
+ wordOrder('Susunlah kata-kata berikut menjadi kalimat yang benar tentang tahap Crawling!',
+   ['Crawler','menjelajahi','jutaan','website','untuk','menemukan','informasi','baru']),
+ wordOrder('Susunlah kata-kata berikut menjadi kalimat yang benar tentang tahap Ranking!',
+   ['Ranking','mengurutkan','hasil','pencarian','berdasarkan','kesesuaian','dan','kualitas']),
+ wordOrder('Susunlah kata-kata berikut menjadi kalimat tentang jejak digital!',
+   ['Setiap','aktivitas','daring','meninggalkan','jejak','digital','yang','sulit','dihapus']),
+ wordOrder('Susunlah kata-kata berikut menjadi kalimat tentang kebiasaan bijak sebelum menyebarkan informasi!',
+   ['Saring','informasi','terlebih','dahulu','sebelum','membagikannya','kepada','orang','lain']),
+ wordOrder('Susunlah kata-kata berikut menjadi kalimat tentang keamanan digital!',
+   ['Jangan','sembarangan','membagikan','kata','sandi','kepada','orang','lain']),
+ wordOrder('Susunlah kata-kata berikut menjadi kalimat tentang etika digital!',
+   ['Hormatilah','hak','cipta','karya','orang','lain','di','internet']),
+],
+5:[
+ matchGame('Pasangkan istilah cara kerja mesin pencari dengan pengertiannya!',
+  [['Crawling','Menjelajahi internet menggunakan bot untuk menemukan halaman web baru'],
+   ['Indexing','Menyimpan halaman web yang ditemukan ke dalam database besar'],
+   ['Searching','Mencari data paling sesuai dari indeks saat pengguna mengetik kata kunci'],
+   ['Ranking','Mengurutkan hasil pencarian berdasarkan kesesuaian dan kualitas']]),
+ matchGame('Pasangkan mesin pencarian dengan ciri khasnya!',
+  [['Google','Mesin pencarian paling banyak digunakan di dunia'],
+   ['Bing','Terintegrasi dengan sistem operasi Windows'],
+   ['DuckDuckGo','Tidak melacak aktivitas dan riwayat pencarian pengguna'],
+   ['Baidu','Mesin pencarian terbesar di Tiongkok']]),
+ matchGame('Pasangkan elemen literasi digital dengan penjelasannya!',
+  [['Berpikir Kritis','Menyeleksi sumber dan memeriksa kebenaran informasi'],
+   ['Etika Digital','Memikirkan dampak sebelum membagikan informasi'],
+   ['Keamanan Digital','Menjaga data pribadi dan waspada penipuan daring'],
+   ['Tanggung Jawab Hukum','Memahami konsekuensi hukum dari jejak digital']]),
+ matchGame('Pasangkan tahap cara kerja mesin pencari dengan fungsinya!',
+  [['Crawling','Menjelajahi website menggunakan bot'],
+   ['Searching','Mencari data paling sesuai saat pengguna mengetik kata kunci'],
+   ['Ranking','Mengurutkan hasil berdasarkan kesesuaian dan kualitas']]),
+ matchGame('Pasangkan istilah keamanan digital dengan penjelasannya!',
+  [['Phishing','Penipuan untuk mencuri data melalui situs atau pesan palsu'],
+   ['Kata Sandi Kuat','Kombinasi huruf, angka, dan simbol yang sulit ditebak'],
+   ['Metadata','Informasi tersembunyi pada file seperti waktu dan lokasi']]),
+ matchGame('Pasangkan istilah UU ITE dengan penjelasannya!',
+  [['UU ITE','Undang-undang yang mengatur informasi dan transaksi elektronik'],
+   ['Pasal 27A','Mengatur ketentuan pencemaran nama baik'],
+   ['Pasal 16A','Mengatur perlindungan anak di ruang digital']]),
+ matchGame('Pasangkan mesin pencarian dengan negara/ciri asalnya!',
+  [['Google','Amerika Serikat, paling banyak digunakan di dunia'],
+   ['Baidu','Tiongkok, populer untuk bahasa Mandarin'],
+   ['Yandex','Rusia, populer di kawasan Eropa Timur']]),
+ matchGame('Pasangkan sikap bijak dengan situasi digital yang dihadapi!',
+  [['Menerima pesan berantai mencurigakan','Memeriksa kebenarannya sebelum menyebarkan'],
+   ['Menemukan gambar mencurigakan','Melakukan reverse image search'],
+   ['Diminta membagikan kata sandi','Menolak dan menjaga kerahasiaan data']]),
+ matchGame('Pasangkan komponen literasi digital dengan contoh penerapannya!',
+  [['Berpikir Kritis','Memeriksa beberapa sumber sebelum percaya suatu informasi'],
+   ['Etika Digital','Menghormati privasi dan karya orang lain saat online'],
+   ['Tanggung Jawab Hukum','Memahami bahwa unggahan di internet dapat berdampak hukum']]),
+ matchGame('Pasangkan mesin pencarian dengan ciri utamanya!',
+  [['DuckDuckGo','Tidak melacak aktivitas dan tidak menyimpan riwayat pencarian'],
+   ['Bing','Terintegrasi dengan sistem operasi Windows'],
+   ['Yandex','Populer digunakan di kawasan Rusia dan Eropa Timur']]),
+],
+6:[
+ tf('Reverse Image Search memungkinkan kita mencari gambar berdasarkan gambar itu sendiri, bukan hanya kata kunci.', true, 'Benar, Reverse Image Search mencari gambar serupa berdasarkan gambar yang diunggah.'),
+ tf('Metadata sebuah gambar tidak pernah bisa dihapus atau diubah oleh siapa pun.', false, 'Salah, metadata justru bisa dihapus atau diubah sehingga perlu dinilai secara kritis.'),
+ tf('Judul yang terlalu sensasional pada sebuah berita otomatis berarti berita tersebut pasti salah.', false, 'Salah, judul sensasional tidak selalu berarti salah, tetapi tetap perlu diperiksa kebenarannya.'),
+ tf('Kebebasan mengakses informasi digital harus disertai tanggung jawab menggunakan informasi tersebut dengan bijak.', true, 'Benar, kebebasan dan tanggung jawab adalah dua konsep yang saling terkait di dunia digital.'),
+ tf('Menyebarkan informasi tanpa memeriksa kebenarannya terlebih dahulu adalah kebiasaan yang dianjurkan agar informasi cepat tersebar.', false, 'Salah, kita harus memeriksa kebenaran informasi sebelum membagikannya (saring sebelum sharing).'),
+ tf('Situs dengan domain .go.id, .sch.id, .ac.id, dan .org umumnya lebih dapat dipercaya sebagai sumber informasi.', true, 'Benar, situs pemerintah, sekolah, universitas, dan organisasi terpercaya sebaiknya diutamakan.'),
+ tf('Bing adalah mesin pencarian yang dibuat oleh Google.', false, 'Salah, Bing dibuat oleh Microsoft, bukan Google.'),
+ tf('Reverse Image Search dapat membantu menelusuri asal-usul sebuah gambar di internet.', true, 'Benar, teknik ini membantu menelusuri sumber dan keaslian gambar.'),
+ tf('Jejak digital yang sudah kita tinggalkan di internet dapat dihapus sepenuhnya dengan mudah kapan saja.', false, 'Salah, jejak digital sulit dihapus sepenuhnya karena bisa sudah disalin atau disebarkan orang lain.'),
+ tf('UU ITE pertama kali disahkan pada tahun 2008 dan telah mengalami revisi.', true, 'Benar, UU ITE disahkan tahun 2008 dan telah direvisi beberapa kali, terakhir tahun 2024.'),
+],
+7:[
+ mc('Kamu memasuki lorong pertama Gunung Tantangan. Apa istilah untuk kemampuan mencari, memilih, dan memanfaatkan informasi digital secara kritis dan bertanggung jawab?',
+   ['Menjelajah Informasi Digital dengan Bijak','Reverse Image Search','Clickbait','Crawling'],0,'Kemampuan ini disebut menjelajah informasi digital dengan bijak (literasi digital).'),
+ mc('Lorong berikutnya menguji risiko dunia digital. Apa bahaya utama jika kita tidak bijak dan waspada saat online?',
+   ['Pencurian data pribadi dan penipuan (phishing)','Bertambahnya kuota internet','Baterai ponsel cepat habis','Koneksi internet menjadi lebih cepat'],0,'Ketidakwaspadaan dapat menyebabkan pencurian data pribadi dan penipuan daring seperti phishing.'),
+ mc('Sebuah pesan berbunyi "SEBARKAN SEKARANG JUGA!!!" muncul di depanmu. Sikap paling bijak adalah...',
+   ['Memeriksa kebenarannya terlebih dahulu sebelum membagikan','Langsung menyebarkannya ke semua orang','Mengabaikannya tanpa membaca isi pesan','Membagikannya hanya ke teman dekat'],0,'Pesan yang memaksa segera disebarkan justru perlu diperiksa dulu kebenarannya.'),
+ mc('Kamu menemukan sebuah gambar mencurigakan. Apa langkah pertama untuk memeriksa keasliannya?',
+   ['Melakukan reverse image search','Langsung membagikannya ke media sosial','Mengubah warna gambar','Mengunduh ulang gambar tersebut'],0,'Reverse image search membantu menelusuri asal-usul dan keaslian sebuah gambar.'),
+ mc('Jejak yang tertinggal dari setiap unggahan, komentar, dan bagikan di internet disebut...',
+   ['Digital footprint (jejak digital)','Cache browser','Bandwidth','Cookie'],0,'Aktivitas daring meninggalkan jejak digital yang sulit dihapus dan dapat berdampak di masa depan.'),
+ mc('Kamu mendapati sebuah situs meminta kata sandi akun media sosialmu melalui tautan mencurigakan. Sikap paling bijak adalah...',
+   ['Tidak memasukkan kata sandi dan melaporkan tautan tersebut','Langsung memasukkan kata sandi agar cepat selesai','Membagikan tautan tersebut ke teman-teman','Mengklik tautan berulang kali untuk memastikan'],0,'Tautan mencurigakan yang meminta kata sandi biasanya merupakan upaya phishing, sehingga harus dihindari dan dilaporkan.'),
+ mc('Manakah contoh perilaku yang mencerminkan etika digital yang baik?',
+   ['Menghormati hak cipta dan mencantumkan sumber saat mengutip karya orang lain','Menyalin karya orang lain tanpa izin','Menyebarkan informasi pribadi orang lain tanpa izin','Menghina pengguna lain di kolom komentar'],0,'Etika digital yang baik mencakup menghormati hak cipta dan privasi orang lain.'),
+ mc('Apa yang sebaiknya dilakukan sebelum membagikan sebuah artikel berita ke media sosial?',
+   ['Membaca keseluruhan isi dan memeriksa kebenarannya terlebih dahulu','Membagikannya langsung berdasarkan judul saja','Mengubah judul agar lebih menarik perhatian','Menghapus nama penulis aslinya'],0,'Sebelum membagikan berita, sebaiknya baca dan periksa kebenaran isinya terlebih dahulu.'),
+ mc('Kamu menerima pesan berhadiah yang meminta data pribadi dan kata sandi akun bank. Ini adalah contoh...',
+   ['Phishing (penipuan daring)','Crawling','Indexing','Ranking'],0,'Permintaan data pribadi dan kata sandi melalui iming-iming hadiah adalah ciri khas phishing.'),
+ mc('Manakah sikap yang mencerminkan tanggung jawab hukum di dunia digital?',
+   ['Memahami bahwa unggahan di internet dapat menimbulkan konsekuensi hukum','Menganggap semua yang diunggah di internet tidak memiliki konsekuensi','Percaya bahwa UU ITE hanya berlaku bagi orang dewasa','Mengunggah apa saja tanpa mempertimbangkan dampaknya'],0,'Tanggung jawab hukum berarti memahami bahwa aktivitas digital dapat berdampak dan diatur oleh hukum seperti UU ITE.'),
+],
+8:[
+ mc('KASUS: Pada 2001, seseorang membeli domain mirip situs internet banking BCA dan menyimpan username & password nasabah yang salah ketik alamat. Pelanggaran apa yang paling relevan dari kasus ini?',
+   ['Pencurian data melalui domain palsu (phishing)','Pelanggaran hak cipta lagu','Pelanggaran lalu lintas','Pencemaran nama baik di blog'],0,'Kasus BCA 2001 adalah kasus pencurian data melalui domain mirip (mengarah ke phishing).'),
+ mc('KASUS: Prita Mulyasari dijerat menggunakan UU ITE setelah membagikan pengalaman buruknya sebagai pasien lewat surat elektronik. Kontroversi apa yang muncul dari kasus ini?',
+   ['Perdebatan tentang batasan pasal pencemaran nama baik terhadap kebebasan berekspresi','Pelanggaran hak cipta musik','Kasus pembajakan film','Kebocoran data pemerintah'],0,'Kasus ini memicu perdebatan tentang pasal pencemaran nama baik yang dinilai terlalu luas.'),
+ mc('BUKTI: Sebelum UU ITE ada pada 2008, kasus kejahatan digital seperti peretasan sulit ditangani. Apa penyebab utamanya menurut materi?',
+   ['Kekosongan hukum yang jelas untuk kejahatan digital','Tidak adanya internet di Indonesia','Tidak ada mesin pencarian saat itu','Semua kasus digital sudah diatur dengan baik'],0,'Sebelum UU ITE, terjadi kekosongan hukum sehingga kejahatan digital sulit ditangani secara efektif.'),
+ mc('ANALISIS: Revisi kedua UU ITE (UU No. 1 Tahun 2024) merampingkan salah satu pasal yang paling banyak dikritik. Pasal apakah itu?',
+   ['Pasal 27 tentang pencemaran nama baik ("pasal karet")','Pasal tentang hak cipta lagu','Pasal tentang pajak digital','Pasal tentang e-commerce'],0,'Pasal 27 ("pasal karet") dirampingkan, dan ketentuan pencemaran nama baik dipindahkan ke Pasal 27A.'),
+ mc('BUKTI TAMBAHAN: Revisi kedua UU ITE menambahkan Pasal 16A. Perlindungan apa yang diatur pasal ini?',
+   ['Perlindungan anak di ruang digital','Perlindungan hak cipta film','Perlindungan merek dagang','Perlindungan data perbankan saja'],0,'Pasal 16A mengatur perlindungan anak di ruang digital, termasuk batas usia dan verifikasi pengguna.'),
+ mc('KASUS: Seorang pengguna media sosial dilaporkan karena menyebarkan berita bohong (hoaks) yang meresahkan masyarakat. Pasal apa dalam UU ITE yang paling relevan untuk kasus penyebaran berita bohong?',
+   ['Pasal tentang penyebaran berita bohong yang menimbulkan keonaran','Pasal tentang hak cipta lagu','Pasal tentang pajak e-commerce','Pasal tentang perlindungan merek dagang'],0,'UU ITE mengatur ketentuan pidana bagi penyebaran berita bohong yang menimbulkan keonaran di masyarakat.'),
+ mc('ANALISIS: Mengapa banyak pihak menyebut Pasal 27 UU ITE (sebelum revisi) sebagai "pasal karet"?',
+   ['Karena rumusannya dinilai terlalu luas sehingga dapat ditafsirkan secara berbeda-beda','Karena pasal tersebut hanya berlaku selama satu tahun','Karena pasal tersebut tidak pernah digunakan sama sekali','Karena pasal tersebut hanya mengatur transaksi jual beli'],0,'Istilah "pasal karet" muncul karena rumusan pasal dinilai terlalu luas dan multitafsir.'),
+ mc('BUKTI: Revisi UU ITE bertujuan untuk menyeimbangkan antara kebebasan berekspresi dan perlindungan hukum. Manakah contoh penerapan tujuan ini?',
+   ['Memperjelas rumusan pasal pencemaran nama baik agar tidak multitafsir','Menghapus seluruh ketentuan pidana dalam UU ITE','Melarang seluruh bentuk media sosial di Indonesia','Membatasi akses internet hanya untuk pemerintah'],0,'Revisi bertujuan memperjelas rumusan pasal agar tidak menimbulkan multitafsir yang merugikan kebebasan berekspresi.'),
+ mc('KASUS: Data pribadi ribuan pengguna sebuah platform bocor dan diperjualbelikan di forum daring. Pelanggaran ini paling berkaitan dengan ketentuan...',
+   ['Perlindungan data pribadi dalam UU ITE','Hak cipta karya seni','Pajak transaksi elektronik','Perlindungan merek dagang'],0,'Kebocoran dan jual beli data pribadi berkaitan dengan ketentuan perlindungan data pribadi dalam UU ITE.'),
+ mc('ANALISIS: Mengapa literasi digital penting dalam mencegah pelanggaran UU ITE yang tidak disengaja?',
+   ['Karena pemahaman literasi digital membantu pengguna berpikir kritis dan bertanggung jawab sebelum bertindak di dunia digital','Karena literasi digital menjamin kecepatan internet lebih tinggi','Karena literasi digital menghapus semua risiko hukum secara otomatis','Karena literasi digital hanya diperlukan oleh aparat penegak hukum'],0,'Literasi digital membantu pengguna berpikir kritis dan bertanggung jawab sehingga terhindar dari pelanggaran hukum yang tidak disengaja.'),
+],
+9:[
+ mc('Manakah tahap cara kerja mesin pencari yang bertugas mengurutkan hasil berdasarkan kualitas dan relevansi?',
+   ['Ranking','Crawling','Indexing','Searching'],0,'Ranking adalah tahap pengurutan hasil pencarian.'),
+ tf('Metadata gambar dapat membantu memverifikasi waktu dan lokasi pengambilan sebuah foto.', true, 'Benar, metadata dapat berisi informasi waktu, lokasi, dan perangkat yang digunakan.'),
+ findSentence('Temukan kalimat yang menjelaskan salah satu elemen "Keamanan Digital"!',
+  'A. Menyeleksi sumber informasi yang kredibel. B. Tidak sembarangan membagikan data pribadi seperti kata sandi. C. Menghormati hak cipta karya orang lain. D. Mengurutkan hasil pencarian.',
+  1,'Menjaga data pribadi termasuk dalam elemen Keamanan Digital.'),
+ mc('KASUS: UU ITE telah digugat sebanyak lima belas kali ke Mahkamah Konstitusi sejak 2008. Apa makna dari fakta ini?',
+   ['UU ITE tergolong undang-undang yang kontroversial sepanjang penerapannya','UU ITE tidak pernah menimbulkan masalah','UU ITE hanya berlaku satu tahun','UU ITE tidak berkaitan dengan kebebasan berekspresi'],0,'Banyaknya gugatan mencerminkan betapa kontroversialnya UU ITE sepanjang sejarah penerapannya.'),
+ riddle('Aku adalah pasal baru dalam revisi UU ITE 2024 yang mengatur larangan mengancam orang lain melalui saluran elektronik. Siapakah aku?',
+   ['Petunjuk 1: Nomorku dekat dengan Pasal 27A.','Petunjuk 2: Aku membahas ancaman, bukan penghinaan.'],
+   'pasal 27b','Aku adalah Pasal 27B, mengatur larangan mengancam orang lain melalui saluran elektronik.'),
+ tf('Digital footprint (jejak digital) dapat memengaruhi reputasi seseorang di masa depan, misalnya saat melamar pekerjaan.', true, 'Benar, jejak digital yang tertinggal dapat memengaruhi penilaian orang lain terhadap kita, termasuk saat melamar pekerjaan.'),
+ mc('Manakah contoh tindakan yang mencerminkan Keamanan Digital yang baik?',
+   ['Menggunakan kata sandi yang kuat dan tidak membagikannya ke orang lain','Menggunakan kata sandi yang sama untuk semua akun agar mudah diingat','Membagikan kata sandi kepada teman dekat','Menuliskan kata sandi di tempat umum agar tidak lupa'],0,'Keamanan digital yang baik mencakup penggunaan kata sandi kuat dan menjaga kerahasiaannya.'),
+ findSentence('Temukan kalimat yang menjelaskan mengapa UU ITE terus direvisi!',
+  'A. UU ITE direvisi agar dapat menyesuaikan perkembangan teknologi dan menyeimbangkan kebebasan berekspresi dengan kepastian hukum. B. UU ITE direvisi karena tidak pernah digunakan. C. UU ITE direvisi agar internet menjadi lebih lambat. D. UU ITE direvisi untuk menghapus seluruh mesin pencarian.',
+  0, 'UU ITE direvisi untuk menyesuaikan perkembangan teknologi serta menyeimbangkan kebebasan berekspresi dan kepastian hukum.'),
+ riddle('Aku adalah kebiasaan memeriksa kebenaran sebuah informasi dengan membandingkan beberapa sumber terpercaya sebelum mempercayainya. Siapakah aku?',
+   ['Petunjuk 1: Aku adalah bagian dari sikap berpikir kritis.','Petunjuk 2: Lawan dariku adalah langsung percaya tanpa memeriksa.'],
+   'verifikasi', 'Aku adalah Verifikasi, kebiasaan memeriksa kebenaran informasi dari beberapa sumber terpercaya.'),
+ mc('Sang Penjaga Gerbang menantangmu: Apa yang sebaiknya dilakukan jika menemukan akun media sosial palsu yang mencatut namamu?',
+   ['Melaporkan akun tersebut ke platform terkait','Membiarkannya saja tanpa tindakan','Membuat akun palsu balasan untuk membalas','Membagikan data pribadi tambahan ke akun tersebut'],0,'Melaporkan akun palsu ke platform adalah langkah bijak dan bertanggung jawab.'),
+],
+10:[
+ mc('THE FINAL CHALLENGE — Sang Penjaga Terakhir bertanya: Apa tujuan utama dari kemampuan "Menjelajah Informasi Digital dengan Bijak"?',
+   ['Menjadi pengguna digital yang kritis, bertanggung jawab, aman, dan beretika','Mempercepat koneksi internet','Menambah jumlah followers media sosial','Menghindari penggunaan mesin pencari sama sekali'],0,'Tujuannya adalah menjadi pengguna digital yang kritis, bertanggung jawab, aman, dan beretika.'),
+ tf('Sebelum menyebarkan informasi, langkah bijak yang dianjurkan materi adalah: Cari → Baca → Periksa → Bandingkan → Gunakan/Bagikan.', true, 'Benar, itulah alur sederhana menjelajah informasi digital dengan bijak.'),
+ matchGame('Pasangkan ciri sumber gambar/video kredibel dengan penjelasannya!',
+  [['Reverse Image Search','Menelusuri asal-usul gambar melalui mesin pencari'],
+   ['Memeriksa Metadata','Melihat informasi tersembunyi seperti waktu dan lokasi pengambilan'],
+   ['Mengevaluasi Kualitas','Memeriksa resolusi, ketajaman, dan kebenaran visual sebuah gambar']]),
+ mc('Revisi UU ITE diharmonisasikan dengan KUHP Nasional yang mulai berlaku penuh pada tahun...',
+   ['2026','2008','2016','2024'],0,'Revisi UU ITE diharmonisasikan dengan KUHP Nasional (UU No.1/2023) yang berlaku penuh 2026.'),
+ wordOrder('Susun kata-kata Sang Penjaga Terakhir menjadi kalimat penutup petualanganmu!',
+   ['Kebijaksanaan','digital','dimulai','dari','berpikir','kritis','dan','bertanggung','jawab']),
+ mc('Setelah menaklukkan Ruang Harta Pengetahuan, gelar tertinggi apa yang layak kamu sandang?',
+   ['🏆 MASTER PENGETAHUAN','🥉 PEMULA','🥈 PENJELAJAH','🥇 PETUALANG CERDAS'],0,'Menyelesaikan seluruh petualangan memberikanmu gelar tertinggi: MASTER PENGETAHUAN.'),
+ tf('Reverse Image Search dan pemeriksaan metadata adalah dua cara untuk memverifikasi keaslian sebuah gambar atau video.', true, 'Benar, kedua teknik ini membantu memverifikasi keaslian dan asal-usul gambar/video.'),
+ mc('Sang Penjaga Terakhir bertanya: Mengapa keseimbangan antara kebebasan berekspresi dan tanggung jawab hukum penting di dunia digital?',
+   ['Agar masyarakat dapat berekspresi secara bebas namun tetap menghormati hak dan keamanan orang lain','Agar semua orang bebas melakukan apa saja tanpa batasan','Agar UU ITE dapat dihapuskan sepenuhnya','Agar internet hanya digunakan oleh pemerintah'],0,'Keseimbangan ini penting agar kebebasan berekspresi tetap terjaga tanpa merugikan hak dan keamanan orang lain.'),
+ riddle('Aku adalah sikap yang menggabungkan berpikir kritis, etika digital, keamanan digital, dan tanggung jawab hukum menjadi satu kemampuan utuh. Siapakah aku?',
+   ['Petunjuk 1: Aku adalah judul besar dari seluruh petualangan ini.','Petunjuk 2: Namaku diawali dengan kata "Menjelajah".'],
+   'menjelajah informasi digital dengan bijak', 'Aku adalah Menjelajah Informasi Digital dengan Bijak, kemampuan utuh yang menggabungkan seluruh elemen literasi digital.'),
+ mc('Setelah menguasai seluruh materi petualangan ini, sikap apa yang paling mencerminkan pengguna digital yang bijak?',
+   ['Kritis dalam menyaring informasi, beretika, menjaga keamanan data, dan bertanggung jawab secara hukum','Mempercayai semua informasi yang ditemukan di internet','Membagikan seluruh data pribadi demi mendapatkan followers','Mengabaikan aturan hukum karena merasa aman di dunia maya'],0,'Pengguna digital yang bijak bersikap kritis, beretika, menjaga keamanan, dan bertanggung jawab secara hukum.'),
+]
+};
+}
+
+/* ---------- question builder helpers ---------- */
+let _qid = 0;
+function mc(prompt, options, correctIdx, explanation){
+  return {qid:++_qid, type:'mc', prompt, options:options.map((t,i)=>({id:'o'+i,text:t})), correctId:'o'+correctIdx, explanation};
+}
+function tf(prompt, answerTrue, explanation){
+  return {qid:++_qid, type:'tf', prompt, correctId: answerTrue?'true':'false', explanation};
+}
+function findSentence(prompt, passage, correctIdx, explanation){
+  const sentences = passage.split(/(?=[ABCD]\.\s)/).map(s=>s.trim()).filter(Boolean);
+  return {qid:++_qid, type:'find_sentence', prompt, passage:sentences, correctId:'s'+correctIdx, explanation};
+}
+function riddle(prompt, hints, answer, explanation){
+  return {qid:++_qid, type:'riddle', prompt, hints, answer:answer.toLowerCase(), explanation};
+}
+function wordOrder(prompt, words){
+  const correctSentence = words.join(' ');
+  return {qid:++_qid, type:'word_order', prompt, words, correctSentence, explanation:'Kalimat yang benar: "'+correctSentence+'".'};
+}
+function matchGame(prompt, pairs){
+  return {qid:++_qid, type:'match', prompt, pairs:pairs.map((p,i)=>({id:'p'+i, term:p[0], def:p[1]})), explanation:'Semua pasangan berhasil dicocokkan dengan benar.'};
+}
+
+/* ---------------- Global state ---------------- */
+let state = null;      // persisted save
+let settings = null;   // teacher settings
+let questionBank = null;
+let materi = null;
+
+let playSession = null; // { levelId, questions[], qIndex, lives, levelScore, hintsUsed, startTime }
+let audioCtx = null;
+
+function loadSettings(published){
+  const raw = localStorage.getItem(SETTINGS_KEY);
+  if(raw){ settings = JSON.parse(raw); }
+  else if(published && published.settings){ settings = published.settings; }
+  else { settings = {correctPts:100, penaltyMin:50, penaltyMax:100, hintPenalty:15, kkm:71, audioOn:true}; }
+  if(settings.kkm===undefined) settings.kkm = 71;
+}
+function saveSettingsToStorage(){ localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); }
+
+function loadMateri(published){
+  const raw = localStorage.getItem(MATERI_KEY);
+  if(raw){ materi = JSON.parse(raw); }
+  else if(published && published.materi){ materi = published.materi; }
+  else { materi = {judul:'Perancangan dan Produksi Kerajinan dengan Inspirasi Objek Budaya Lokal — Informasi Digital', isi:'Materi contoh tentang mesin pencarian, literasi digital, dan UU ITE telah dimuat ke dalam bank soal. Guru dapat mengganti materi ini dengan materi pelajaran lain, lalu menekan "Buat Soal Otomatis".'}; }
+}
+function saveMateriToStorage(){ localStorage.setItem(MATERI_KEY, JSON.stringify(materi)); }
+
+function loadQuestionBank(published){
+  const raw = localStorage.getItem(QBANK_KEY);
+  if(raw){ questionBank = JSON.parse(raw); }
+  else if(published && published.questionBank){ questionBank = published.questionBank; saveQBankToStorage(); }
+  else { questionBank = defaultQuestionBank(); saveQBankToStorage(); }
+  // hindari tabrakan id saat guru menambah soal baru setelah data dimuat dari data.json/localStorage
+  let maxId = 0;
+  Object.values(questionBank).forEach(list=>list.forEach(q=>{ if(q.qid>maxId) maxId=q.qid; }));
+  _qid = maxId;
+}
+function saveQBankToStorage(){ localStorage.setItem(QBANK_KEY, JSON.stringify(questionBank)); }
+
+/* ---------------- Publikasi data ke GitHub (data.json) ---------------- */
+async function fetchPublishedData(){
+  try{
+    const res = await fetch('data.json?v=' + Date.now(), {cache:'no-store'});
+    if(!res.ok) return null;
+    return await res.json();
+  }catch(e){ return null; }
+}
+function downloadPublishedData(){
+  const payload = {materi, questionBank, settings};
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'data.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+async function reloadFromPublished(){
+  if(!confirm('Ini akan MEMBUANG draf lokal di perangkat ini (materi, bank soal, pengaturan) dan menggantinya dengan isi data.json terbaru dari server. Lanjutkan?')) return;
+  const published = await fetchPublishedData();
+  if(!published){ alert('Gagal memuat data.json. Pastikan file tersebut ada di folder yang sama dengan halaman ini dan perangkat terhubung internet.'); return; }
+  localStorage.removeItem(SETTINGS_KEY);
+  localStorage.removeItem(MATERI_KEY);
+  localStorage.removeItem(QBANK_KEY);
+  loadSettings(published);
+  loadMateri(published);
+  loadQuestionBank(published);
+  renderQuestionBankList();
+  const mj = document.getElementById('materiJudul'), mi = document.getElementById('materiIsi');
+  if(mj) mj.value = materi.judul;
+  if(mi) mi.value = materi.isi;
+  alert('Berhasil dimuat ulang dari data.json.');
+}
+
+function defaultState(){
+  return {
+    playerName:'', kelas:'', absen:'', tanggal:'',
+    totalScore:0,
+    levels: LEVEL_META.map(l=>({id:l.id, unlocked:l.id===1, completed:false, key:false, bestScore:0})),
+    achievements:{first_step:false, knowledge_hunter:false, puzzle_master:false, master:false},
+    audioOn:true,
+    startedAt:null, finishedAt:null,
+    finalNilai:null, tuntas:null,
+  };
+}
+let currentSaveKey = null; // kunci unik siswa yang sedang login (nama + kelas)
+function loadState(key){
+  const raw = localStorage.getItem(key);
+  state = raw ? JSON.parse(raw) : null;
+}
+function persist(){ if(currentSaveKey) localStorage.setItem(currentSaveKey, JSON.stringify(state)); }
+
+/* ---------------- Navigation ---------------- */
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ---------------- Login siswa (nama = kunci unik) ---------------- */
+function goStudentStart(){
+  document.getElementById('profileLoginError').style.display='none';
+  const tgl = document.getElementById('inputTanggal');
+  if(tgl && !tgl.value){
+    const d = new Date();
+    tgl.value = d.toISOString().slice(0,10);
+  }
+  showScreen('screen-profile');
+}
+function startAdventure(){
+  const errEl = document.getElementById('profileLoginError');
+  errEl.style.display='none';
+  const name = document.getElementById('inputName').value.trim();
+  if(!name){ errEl.textContent='Masukkan nama terlebih dahulu!'; errEl.style.display='block'; return; }
+
+  /* Nama "Guru" adalah satu-satunya jalan masuk ke Dashboard Guru — tidak ada
+     tombol terpisah di halaman awal, sehingga siswa tidak dapat mengaksesnya. */
+  if(name.toLowerCase()==='guru'){
+    showScreen('screen-teacher');
+    return;
+  }
+
+  const kelas = document.getElementById('inputKelas').value.trim();
+  const tanggal = document.getElementById('inputTanggal').value;
+  const absen = document.getElementById('inputAbsen').value.trim();
+  if(!kelas){ errEl.textContent='Masukkan kelas terlebih dahulu!'; errEl.style.display='block'; return; }
+
+  currentSaveKey = studentSaveKey(name, kelas);
+  const existingRaw = localStorage.getItem(currentSaveKey);
+  if(existingRaw){
+    state = JSON.parse(existingRaw);
+    state.tanggal = tanggal || state.tanggal;
+    if(absen) state.absen = absen;
+    persist();
+    registerStudentIndex(currentSaveKey, state.playerName, state.kelas, state.tanggal);
+    document.getElementById('wbName').textContent = state.playerName;
+    const doneCount = state.levels.filter(l=>l.completed).length;
+    document.getElementById('wbLevel').textContent = Math.min(doneCount+1,10);
+    document.getElementById('wbScore').textContent = state.totalScore;
+    document.getElementById('wbKeys').textContent = state.levels.filter(l=>l.key).length+'/10';
+    showScreen('screen-welcome-back');
+  } else {
+    state = defaultState();
+    state.playerName = name;
+    state.kelas = kelas;
+    state.absen = absen;
+    state.tanggal = tanggal;
+    state.startedAt = Date.now();
+    persist();
+    registerStudentIndex(currentSaveKey, name, kelas, tanggal);
+    enterMenu();
+  }
+}
+function continueAdventure(){ enterMenu(); }
+function confirmRestart(){
+  if(confirm('Seluruh progress akan dihapus dan dimulai dari awal. Lanjutkan?')){
+    const name = state ? state.playerName : '';
+    const kelas = state ? state.kelas : '';
+    const tanggal = state ? state.tanggal : '';
+    const absen = state ? state.absen : '';
+    state = defaultState();
+    state.playerName = name; state.kelas = kelas; state.tanggal = tanggal; state.absen = absen;
+    state.startedAt = Date.now();
+    persist();
+    enterMenu();
+  }
+}
+function restartFromScratch(){ confirmRestart(); }
+
+function enterMenu(){
+  document.getElementById('menuName').textContent = state.playerName || 'Petualang';
+  document.getElementById('audioIcon').textContent = state.audioOn ? '🔊' : '🔇';
+  showScreen('screen-menu');
+}
+
+function toggleAudio(){ state.audioOn = !state.audioOn; persist(); document.getElementById('audioIcon').textContent = state.audioOn?'🔊':'🔇'; beep(state.audioOn?660:330); }
+function setAudio(v){ state.audioOn=v; persist(); }
+
+/* ---------------- Map ---------------- */
+function openMap(){
+  renderMap();
+  showScreen('screen-map');
+}
+function renderMap(){
+  const keys = state.levels.filter(l=>l.key).length;
+  document.getElementById('mapKeys').textContent = keys;
+  document.getElementById('mapScore').textContent = state.totalScore;
+  const pct = Math.round(keys/10*100);
+  document.getElementById('mapPercent').textContent = pct+'%';
+  document.getElementById('mapProgressBar').style.width = pct+'%';
+
+  const c = document.getElementById('trailContainer');
+  c.innerHTML='';
+  LEVEL_META.forEach((meta,i)=>{
+    const st = state.levels[i];
+    const row = document.createElement('div');
+    row.className = 'node-row '+(i%2===0?'left':'right');
+    const isCurrent = st.unlocked && !st.completed;
+    const node = document.createElement('div');
+    node.className = 'node '+(st.completed?'done':(st.unlocked?'current':'locked'));
+    node.innerHTML = `
+      <div class="node-icon">${meta.icon}</div>
+      <div class="node-info">
+        <div class="lvl-name">Level ${meta.id} · ${meta.name}</div>
+        <div class="lvl-sub">${meta.typeName} · ${meta.diff}</div>
+      </div>
+      <div class="node-status">${st.completed?'✅':(st.unlocked?'🔑':'🔒')}</div>
+    `;
+    if(st.unlocked){ node.style.cursor='pointer'; node.onclick=()=>openLevelIntro(meta.id); }
+    row.appendChild(node);
+    c.appendChild(row);
+  });
+}
+
+/* ---------------- Level intro / lifecycle ---------------- */
+let currentLevelId = null;
+function openLevelIntro(id){
+  currentLevelId = id;
+  const meta = LEVEL_META[id-1];
+  document.getElementById('liIcon').textContent = meta.icon;
+  document.getElementById('liName').textContent = 'Level '+id+' · '+meta.name;
+  document.getElementById('liSub').textContent = meta.typeName+' — Tingkat kesulitan: '+meta.diff;
+  document.getElementById('liStory').textContent = meta.story;
+  document.getElementById('liQCount').textContent = (questionBank[id]||[]).length;
+  showScreen('screen-level-intro');
+}
+function beginLevel(){
+  const qs = shuffleCopy(questionBank[currentLevelId] || []);
+  playSession = {
+    levelId: currentLevelId,
+    questions: qs,
+    qIndex: 0,
+    levelScore: 0,
+    hintsUsed: {},
+    startTime: Date.now(),
+  };
+  document.getElementById('playLevelLabel').textContent = LEVEL_META[currentLevelId-1].icon+' '+LEVEL_META[currentLevelId-1].name+' — '+LEVEL_META[currentLevelId-1].typeName;
+  renderPlayHeader();
+  renderCurrentQuestion();
+  showScreen('screen-level');
+}
+function quitToMap(){
+  if(confirm('Keluar dari level ini? Progress soal saat ini tidak akan disimpan.')){
+    showScreen('screen-map'); renderMap();
+  }
+}
+function renderPlayHeader(){
+  document.getElementById('playScore').textContent = state.totalScore + playSession.levelScore;
+  const pct = Math.round(playSession.qIndex/playSession.questions.length*100);
+  document.getElementById('qProgressBar').style.width = pct+'%';
+}
+
+/* ---------------- Question rendering ---------------- */
+function shuffleCopy(arr){ return arr.map(x=>x).sort(()=>Math.random()-0.5).map(cloneQuestion); }
+function cloneQuestion(q){ return JSON.parse(JSON.stringify(q)); }
+
+function renderCurrentQuestion(){
+  const area = document.getElementById('questionArea');
+  const q = playSession.questions[playSession.qIndex];
+  if(!q){ finishLevel(); return; }
+  let html = `<div class="q-meta"><span>Soal ${playSession.qIndex+1} / ${playSession.questions.length}</span><span>${LEVEL_META[playSession.levelId-1].typeName}</span></div>`;
+  html += `<div class="q-prompt">${escapeHtml(q.prompt)}</div>`;
+
+  if(q.type==='mc'){
+    html += `<div class="options">${q.options.map(o=>`<button class="opt-btn" data-oid="${o.id}" onclick="answerMC('${o.id}')">${escapeHtml(o.text)}</button>`).join('')}</div>`;
+  } else if(q.type==='tf'){
+    html += `<div class="options"><button class="opt-btn" data-oid="true" onclick="answerMC('true')">✅ BENAR</button><button class="opt-btn" data-oid="false" onclick="answerMC('false')">❌ SALAH</button></div>`;
+  } else if(q.type==='find_sentence'){
+    html += `<div class="passage">${q.passage.map((s,i)=>`<button class="sent-btn" data-oid="s${i}" onclick="answerMC('s${i}')">${escapeHtml(s)}</button> `).join('')}</div>`;
+  } else if(q.type==='riddle'){
+    html += `<div id="hintArea"></div>
+      <input class="riddle-input" id="riddleInput" placeholder="Ketik jawabanmu di sini...">
+      <div class="btn-row" style="margin-top:.8rem;justify-content:flex-start">
+        <button class="btn" onclick="answerRiddle()">Jawab</button>
+      </div>`;
+  } else if(q.type==='word_order'){
+    const shuffled = q.words.map(x=>x).sort(()=>Math.random()-0.5);
+    html += `<div class="answer-slot" id="wordSlot"></div>
+      <div id="wordBank">${shuffled.map((w,i)=>`<button class="word-chip" data-w="${escapeHtml(w)}" onclick="pickWord(this)">${escapeHtml(w)}</button>`).join('')}</div>
+      <div class="btn-row" style="margin-top:.8rem;justify-content:flex-start">
+        <button class="btn ghost small-btn" onclick="resetWordOrder()">↺ Ulang Susunan</button>
+        <button class="btn" onclick="answerWordOrder()">Periksa Jawaban</button>
+      </div>`;
+    playSession._wordChosen = [];
+  } else if(q.type==='match'){
+    html += `<div class="match-grid">
+      <div class="match-col" id="matchTerms">${shuffleCopy2(q.pairs).map(p=>`<button class="match-item opt-btn" data-id="${p.id}" onclick="matchPick('term','${p.id}')">${escapeHtml(p.term)}</button>`).join('')}</div>
+      <div class="match-col" id="matchDefs">${shuffleCopy2(q.pairs).map(p=>`<button class="match-item opt-btn" data-id="${p.id}" onclick="matchPick('def','${p.id}')">${escapeHtml(p.def)}</button>`).join('')}</div>
+    </div>`;
+    playSession._matchSelTerm = null;
+    playSession._matchLocked = new Set();
+  }
+  html += `<div id="feedbackArea"></div>`;
+  area.innerHTML = html;
+}
+function shuffleCopy2(arr){ return arr.map(x=>x).sort(()=>Math.random()-0.5); }
+function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+/* ----- MC / TF / find_sentence ----- */
+function answerMC(oid){
+  const q = playSession.questions[playSession.qIndex];
+  const correct = (oid === q.correctId);
+  document.querySelectorAll('#questionArea [data-oid]').forEach(b=>{
+    b.disabled = true;
+    if(b.dataset.oid === q.correctId) b.classList.add('correct');
+    if(b.dataset.oid === oid && !correct) b.classList.add('incorrect');
+  });
+  registerAnswer(correct, q.explanation);
+}
+
+/* ----- Riddle ----- */
+function answerRiddle(){
+  const q = playSession.questions[playSession.qIndex];
+  const val = document.getElementById('riddleInput').value.trim().toLowerCase();
+  document.getElementById('riddleInput').disabled = true;
+  const correct = val.length>0 && (val === q.answer || q.answer.includes(val) && val.length>3);
+  registerAnswer(correct, q.explanation + (correct? '' : ' Jawaban yang benar: "'+q.answer+'".'));
+}
+
+/* ----- Word order ----- */
+function pickWord(btn){
+  if(btn.disabled) return;
+  btn.disabled = true;
+  playSession._wordChosen.push(btn.dataset.w);
+  document.getElementById('wordSlot').textContent = playSession._wordChosen.join(' ');
+}
+function resetWordOrder(){
+  playSession._wordChosen = [];
+  document.getElementById('wordSlot').textContent = '';
+  document.querySelectorAll('#wordBank .word-chip').forEach(b=>b.disabled=false);
+}
+function answerWordOrder(){
+  const q = playSession.questions[playSession.qIndex];
+  const attempt = playSession._wordChosen.join(' ');
+  const correct = attempt.trim().toLowerCase() === q.correctSentence.trim().toLowerCase();
+  document.querySelectorAll('#wordBank .word-chip').forEach(b=>b.disabled=true);
+  registerAnswer(correct, q.explanation);
+}
+
+/* ----- Match ----- */
+function matchPick(side, id){
+  if(playSession._matchLocked.has(id)) return;
+  if(side==='term'){ playSession._matchSelTerm = id; document.querySelectorAll('#matchTerms .match-item').forEach(b=>b.classList.remove('selected')); document.querySelector(`#matchTerms [data-id="${id}"]`).classList.add('selected'); return; }
+  if(side==='def'){
+    if(!playSession._matchSelTerm){ return; }
+    const q = playSession.questions[playSession.qIndex];
+    const correct = playSession._matchSelTerm === id;
+    if(correct){
+      playSession._matchLocked.add(id);
+      document.querySelector(`#matchTerms [data-id="${id}"]`).classList.add('locked');
+      document.querySelector(`#matchDefs [data-id="${id}"]`).classList.add('locked');
+      playSession._matchSelTerm = null;
+      showFeedback(true, 'Pasangan benar!');
+      beep(880);
+      if(playSession._matchLocked.size === q.pairs.length){
+        setTimeout(()=>registerAnswer(true, q.explanation), 500);
+      }
+    } else {
+      const penalty = Math.floor(Math.random()*(settings.penaltyMax-settings.penaltyMin+1))+settings.penaltyMin;
+      playSession.levelScore = Math.max(0, playSession.levelScore - penalty);
+      showFeedback(false, 'Pasangan belum tepat, coba lagi. -'+penalty+' poin.');
+      beep(220);
+      renderPlayHeader();
+      document.querySelectorAll('#matchTerms .match-item').forEach(b=>b.classList.remove('selected'));
+      playSession._matchSelTerm = null;
+    }
+  }
+}
+
+/* ---------------- Core answer handling ---------------- */
+function registerAnswer(correct, explanation){
+  if(correct){
+    playSession.levelScore += settings.correctPts;
+    showFeedback(true, '✅ HEBAT! Jawabanmu benar. +'+settings.correctPts+' poin. '+(explanation||''));
+    beep(880);
+  } else {
+    const penalty = Math.floor(Math.random()*(settings.penaltyMax-settings.penaltyMin+1))+settings.penaltyMin;
+    playSession.levelScore = Math.max(0, playSession.levelScore - penalty);
+    showFeedback(false, '❌ Jawaban belum tepat. -'+penalty+' poin. '+(explanation||''));
+    beep(220);
+  }
+  renderPlayHeader();
+  setTimeout(()=>{
+    playSession.qIndex++;
+    renderCurrentQuestion();
+    renderPlayHeader();
+  }, 1600);
+}
+function showFeedback(good, text){
+  const el = document.getElementById('feedbackArea');
+  if(el) el.innerHTML = `<div class="feedback ${good?'good':'bad'}">${text}</div>`;
+}
+function useHint(){
+  const q = playSession.questions[playSession.qIndex];
+  if(q.type!=='riddle'){ alert('Petunjuk hanya tersedia pada tantangan teka-teki.'); return; }
+  const used = playSession.hintsUsed[q.qid] || 0;
+  if(used >= q.hints.length){ alert('Semua petunjuk untuk soal ini sudah digunakan.'); return; }
+  playSession.hintsUsed[q.qid] = used+1;
+  playSession.levelScore = Math.max(0, playSession.levelScore - settings.hintPenalty);
+  const hb = document.getElementById('hintArea');
+  if(hb) hb.innerHTML += `<div class="hint-box">💡 ${escapeHtml(q.hints[used])}</div>`;
+  renderPlayHeader();
+}
+
+/* ---------------- Level completion ---------------- */
+function finishLevel(){
+  const lvl = state.levels[playSession.levelId-1];
+  lvl.completed = true;
+  lvl.key = true;
+  lvl.bestScore = Math.max(lvl.bestScore, playSession.levelScore);
+  state.totalScore += playSession.levelScore;
+  if(playSession.levelId < 10){ state.levels[playSession.levelId].unlocked = true; }
+  updateAchievements();
+  persist();
+
+  document.getElementById('overlayKeyLevelName').textContent = 'Kunci Level '+playSession.levelId+' — '+LEVEL_META[playSession.levelId-1].name+' berhasil diperoleh!';
+  openOverlay('overlayKey');
+
+  if(playSession.levelId === 10){
+    setTimeout(()=>{ closeOverlay('overlayKey'); showFinal(); }, 400);
+  }
+}
+function closeKeyOverlay(){
+  closeOverlay('overlayKey');
+  if(playSession.levelId === 10){ showFinal(); return; }
+  showScreen('screen-map'); renderMap();
+}
+function openOverlay(id){ document.getElementById(id).classList.add('active'); }
+function closeOverlay(id){ document.getElementById(id).classList.remove('active'); }
+
+function updateAchievements(){
+  const done = state.levels.filter(l=>l.completed).length;
+  if(done>=1) state.achievements.first_step = true;
+  if(done>=5) state.achievements.knowledge_hunter = true;
+  if(state.levels[2].completed && state.levels[4].completed) state.achievements.puzzle_master = true;
+  if(done>=10) state.achievements.master = true;
+}
+function showAchievements(){
+  const defs = [
+    {k:'first_step', icon:'🏅', name:'First Step', desc:'Menyelesaikan Level 1.'},
+    {k:'knowledge_hunter', icon:'🏅', name:'Knowledge Hunter', desc:'Menyelesaikan 5 level.'},
+    {k:'puzzle_master', icon:'🏅', name:'Puzzle Master', desc:'Berhasil menyelesaikan teka-teki & pasangan.'},
+    {k:'master', icon:'🏆', name:'Master Pengetahuan', desc:'Menyelesaikan seluruh petualangan.'},
+  ];
+  const grid = document.getElementById('badgeGrid');
+  grid.innerHTML = defs.map(d=>`<div class="badge ${state.achievements[d.k]?'':'locked'}"><div class="b-icon">${d.icon}</div><div style="font-weight:800">${d.name}</div><div style="font-size:.78rem;opacity:.8">${d.desc}</div></div>`).join('');
+  showScreen('screen-achievements');
+}
+
+/* ---------------- Aturan Permainan ---------------- */
+let rulesReturnScreen = 'screen-menu';
+function showRules(returnScreen){
+  rulesReturnScreen = returnScreen || 'screen-menu';
+  const max = computeMaxPossibleScore();
+  const kkm = settings.kkm;
+  // perkiraan poin bintang minimal agar nilai akhir (dibulatkan) > KKM
+  const starsNeeded = max>0 ? Math.max(0, Math.ceil(((kkm+0.5)/100)*max)) : 0;
+  document.getElementById('ruleCorrectPts').textContent = '+' + settings.correctPts;
+  document.getElementById('rulePenalty').textContent = '-' + settings.penaltyMin + ' s/d -' + settings.penaltyMax;
+  document.getElementById('ruleHintPenalty').textContent = '-' + settings.hintPenalty;
+  document.getElementById('ruleMaxScore').textContent = max;
+  document.getElementById('ruleKKM').textContent = kkm;
+  document.getElementById('ruleStarsNeeded').textContent = '≥ ' + starsNeeded + ' ⭐';
+  document.getElementById('ruleTuntasDesc').textContent = 'Nilai akhir LEBIH DARI ' + kkm + ' (± ' + starsNeeded + '+ ⭐ dari ' + max + ' ⭐)';
+  document.getElementById('ruleBelumTuntasDesc').textContent = 'Nilai akhir ' + kkm + ' ke bawah (± kurang dari ' + starsNeeded + ' ⭐ dari ' + max + ' ⭐)';
+  showScreen('screen-rules');
+}
+function closeRules(){ showScreen(rulesReturnScreen); }
+
+/* Nilai (skala 0-100) dihitung dari total poin bintang yang didapat siswa,
+   dibandingkan dengan total poin maksimum yang mungkin didapat dari seluruh
+   soal di semua level (jika semua dijawab benar tanpa penalti). */
+function computeMaxPossibleScore(){
+  let max = 0;
+  for(let i=1;i<=10;i++){ max += (questionBank[i]||[]).length * settings.correctPts; }
+  return max;
+}
+function computeNilai(totalScore){
+  const max = computeMaxPossibleScore();
+  if(max<=0) return 0;
+  let nilai = Math.round((totalScore/max)*100);
+  return Math.max(0, Math.min(100, nilai));
+}
+function showFinal(){
+  state.finishedAt = Date.now();
+  const nilai = computeNilai(state.totalScore);
+  const tuntas = nilai > settings.kkm;
+  state.finalNilai = nilai;
+  state.tuntas = tuntas;
+  persist();
+  document.getElementById('finalName').textContent = state.playerName;
+  document.getElementById('finalKeys').textContent = state.levels.filter(l=>l.key).length+'/10';
+  document.getElementById('finalScore').textContent = state.totalScore;
+  document.getElementById('finalNilai').textContent = nilai;
+  const statusEl = document.getElementById('finalStatus');
+  statusEl.textContent = tuntas ? '✅ TUNTAS (KKM '+settings.kkm+')' : '❌ BELUM TUNTAS (KKM '+settings.kkm+')';
+  statusEl.style.color = tuntas ? 'var(--ok)' : 'var(--ember)';
+  let title = '🥉 PEMULA';
+  if(nilai>=65) title='🥈 PENJELAJAH';
+  if(nilai>=80) title='🥇 PETUALANG CERDAS';
+  if(nilai>=90) title='🏆 MASTER PENGETAHUAN';
+  document.getElementById('finalTitle').textContent = title;
+  const mins = state.startedAt ? Math.max(1, Math.round((Date.now()-state.startedAt)/60000)) : '-';
+  document.getElementById('finalTime').textContent = mins+' menit';
+  showScreen('screen-final');
+}
+
+/* ---------------- Audio (WebAudio beeps, no external files) ---------------- */
+function beep(freq){
+  if(state && !state.audioOn) return;
+  try{
+    audioCtx = audioCtx || new (window.AudioContext||window.webkitAudioContext)();
+    const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
+    o.type='sine'; o.frequency.value=freq;
+    g.gain.setValueAtTime(0.08, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime+0.35);
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start(); o.stop(audioCtx.currentTime+0.35);
+  }catch(e){}
+}
+
+/* ---------------- Teacher dashboard ---------------- */
+let teacherCurrentLevel = 1;
+function switchTeacherTab(tab){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  if(tab==='materi'){ document.getElementById('materiJudul').value = materi.judul; document.getElementById('materiIsi').value = materi.isi; }
+  if(tab==='soal'){ renderTeacherLevelSelect(); renderQuestionBankList(); }
+  if(tab==='pengaturan'){
+    document.getElementById('setCorrectPts').value = settings.correctPts;
+    document.getElementById('setPenaltyMin').value = settings.penaltyMin;
+    document.getElementById('setPenaltyMax').value = settings.penaltyMax;
+    document.getElementById('setHintPenalty').value = settings.hintPenalty;
+    document.getElementById('setKKM').value = settings.kkm;
+  }
+  if(tab==='hasil'){ renderHasilSiswa(); }
+}
+function saveMateri(){
+  materi.judul = document.getElementById('materiJudul').value.trim();
+  materi.isi = document.getElementById('materiIsi').value.trim();
+  saveMateriToStorage();
+  alert('Materi berhasil disimpan.');
+}
+function generateSoalOtomatis(){
+  const text = document.getElementById('materiIsi').value.trim();
+  if(!text){ alert('Isi materi terlebih dahulu sebelum membuat soal otomatis.'); return; }
+  const sentences = text.split(/(?<=[.!?])\s+/).map(s=>s.trim()).filter(s=>s.length>25 && s.length<220);
+  if(sentences.length < 4){ alert('Materi terlalu singkat untuk membuat soal otomatis. Tambahkan lebih banyak isi materi.'); return; }
+  const picks = shuffleCopy2(sentences).slice(0,3);
+  const newQs = picks.map(s=>{
+    const words = s.replace(/[.,]/g,'').split(' ').filter(Boolean);
+    const blankIdx = Math.max(1, Math.floor(words.length/2));
+    const answerWord = words[blankIdx];
+    const distractors = shuffleCopy2(sentences.join(' ').split(' ')).filter(w=>w.toLowerCase()!==answerWord.toLowerCase()).slice(0,3);
+    const promptText = 'Lengkapi kalimat dari materi berikut: "'+words.map((w,i)=>i===blankIdx?'____':w).join(' ')+'"';
+    const options = shuffleCopy2([answerWord, ...distractors]);
+    const correctIdx = options.indexOf(answerWord);
+    return mc(promptText, options, correctIdx, 'Kalimat lengkap: "'+s+'"');
+  });
+  questionBank[teacherCurrentLevel] = (questionBank[teacherCurrentLevel]||[]).concat(newQs);
+  saveQBankToStorage();
+  switchTeacherTab('soal');
+  alert(newQs.length+' soal otomatis ditambahkan ke Level '+teacherCurrentLevel+'. Silakan periksa dan edit pada Bank Soal.');
+}
+function renderTeacherLevelSelect(){
+  const el = document.getElementById('teacherLevelSelect');
+  el.innerHTML = LEVEL_META.map(m=>`<button class="tab-btn ${m.id===teacherCurrentLevel?'active':''}" onclick="teacherCurrentLevel=${m.id};renderTeacherLevelSelect();renderQuestionBankList()">L${m.id} ${m.icon}</button>`).join('');
+}
+function renderQuestionBankList(){
+  const list = questionBank[teacherCurrentLevel] || [];
+  const el = document.getElementById('questionBankList');
+  el.innerHTML = `<p class="mini-note">Level ${teacherCurrentLevel} · ${LEVEL_META[teacherCurrentLevel-1].typeName} · ${list.length} soal</p>` +
+    list.map((q,i)=>`
+    <div class="card" style="margin-bottom:.7rem;padding:.9rem">
+      <div class="row" style="justify-content:space-between">
+        <b>Soal ${i+1} (${escapeHtml(typeLabel(q.type))})</b>
+        <div class="q-row-actions">
+          <button class="btn small-btn secondary" onclick="editQuestion(${i})">✏️ Edit</button>
+          <button class="btn small-btn danger" onclick="deleteQuestion(${i})">🗑️ Hapus</button>
+        </div>
+      </div>
+      <div style="margin-top:.4rem;font-size:.9rem">${escapeHtml(q.prompt)}</div>
+    </div>`).join('') || '<p class="mini-note">Belum ada soal pada level ini.</p>';
+}
+function typeLabel(t){
+  return {mc:'Pilihan Ganda', tf:'Benar/Salah', find_sentence:'Mencari Kalimat', riddle:'Teka-teki', word_order:'Susun Kata', match:'Pasangkan'}[t] || t;
+}
+function deleteQuestion(i){
+  if(!confirm('Hapus soal ini?')) return;
+  questionBank[teacherCurrentLevel].splice(i,1);
+  saveQBankToStorage(); renderQuestionBankList();
+}
+
+/* ---------------- Editor soal (tambah & edit, termasuk opsi jawaban) ---------------- */
+let editDraft = null;      // clone soal yang sedang diedit/dibuat
+let editingIndex = null;   // null = tambah baru, angka = edit soal ke-i
+
+function blankDraftForType(type){
+  if(type==='mc') return {type:'mc', prompt:'', options:[{id:'o0',text:''},{id:'o1',text:''},{id:'o2',text:''},{id:'o3',text:''}], correctId:'o0', explanation:''};
+  if(type==='tf') return {type:'tf', prompt:'', correctId:'true', explanation:''};
+  if(type==='find_sentence') return {type:'find_sentence', prompt:'', passage:[{id:'s0',text:''},{id:'s1',text:''}], correctId:'s0', explanation:''};
+  if(type==='riddle') return {type:'riddle', prompt:'', hints:[''], answer:'', explanation:''};
+  if(type==='word_order') return {type:'word_order', prompt:'', words:['','',''], explanation:''};
+  if(type==='match') return {type:'match', prompt:'', pairs:[{id:'p0',term:'',def:''},{id:'p1',term:'',def:''}], explanation:''};
+  return {type:'mc', prompt:'', options:[{id:'o0',text:''},{id:'o1',text:''}], correctId:'o0', explanation:''};
+}
+
+function addBlankQuestion(){
+  editingIndex = null;
+  const lvlType = LEVEL_META[teacherCurrentLevel-1].type;
+  const defaultType = (lvlType && lvlType!=='mixed') ? lvlType : 'mc';
+  editDraft = blankDraftForType(defaultType);
+  document.getElementById('editQTitle').textContent = '➕ Tambah Soal Baru';
+  document.getElementById('editQType').value = defaultType;
+  document.getElementById('editQType').disabled = false;
+  document.getElementById('editQTypeField').style.display = '';
+  fillEditFormFromDraft();
+  document.getElementById('overlayEditQuestion').classList.add('active');
+}
+function editQuestion(i){
+  editingIndex = i;
+  const q = questionBank[teacherCurrentLevel][i];
+  editDraft = JSON.parse(JSON.stringify(q)); // deep clone, tipe soal tidak diubah saat edit
+  document.getElementById('editQTitle').textContent = '✏️ Edit Soal';
+  document.getElementById('editQType').value = editDraft.type;
+  document.getElementById('editQType').disabled = true; // tipe soal tidak diganti saat edit, hanya saat tambah baru
+  document.getElementById('editQTypeField').style.display = '';
+  fillEditFormFromDraft();
+  document.getElementById('overlayEditQuestion').classList.add('active');
+}
+function closeEditQuestionModal(){
+  document.getElementById('overlayEditQuestion').classList.remove('active');
+  editDraft = null; editingIndex = null;
+}
+function changeEditDraftType(newType){
+  editDraft = blankDraftForType(newType);
+  editDraft.prompt = document.getElementById('editQPrompt').value;
+  editDraft.explanation = document.getElementById('editQExplanation').value;
+  fillEditFormFromDraft();
+}
+function fillEditFormFromDraft(){
+  document.getElementById('editQPrompt').value = editDraft.prompt || '';
+  document.getElementById('editQExplanation').value = editDraft.explanation || '';
+  renderEditTypeArea();
+}
+function renderEditTypeArea(){
+  const area = document.getElementById('editQTypeArea');
+  const t = editDraft.type;
+  if(t==='mc'){
+    area.innerHTML = '<label style="font-weight:700;display:block;margin-bottom:.3rem;font-size:.9rem;color:var(--gold-bright)">Pilihan Jawaban (klik ⭐ untuk menandai jawaban benar)</label>' +
+      editDraft.options.map((o,idx)=>`
+      <div class="edit-list-row">
+        <input type="radio" name="editQCorrect" ${editDraft.correctId===o.id?'checked':''} onchange="editDraft.correctId='${o.id}'" title="Tandai sebagai jawaban benar">
+        <input type="text" value="${escapeAttr(o.text)}" placeholder="Teks pilihan ${idx+1}" oninput="editDraft.options[${idx}].text=this.value">
+        <button type="button" class="btn small-btn danger" onclick="removeEditOption(${idx})" ${editDraft.options.length<=2?'disabled':''}>🗑️</button>
+      </div>`).join('') +
+      `<button type="button" class="btn small-btn secondary" onclick="addEditOption()" ${editDraft.options.length>=6?'disabled':''}>➕ Tambah Pilihan</button>`;
+  } else if(t==='tf'){
+    area.innerHTML = '<label style="font-weight:700;display:block;margin-bottom:.3rem;font-size:.9rem;color:var(--gold-bright)">Jawaban Benar</label>' +
+      `<div class="edit-list-row"><input type="radio" name="editQTF" ${editDraft.correctId==='true'?'checked':''} onchange="editDraft.correctId='true'"><label style="margin:0">✅ Benar</label></div>` +
+      `<div class="edit-list-row"><input type="radio" name="editQTF" ${editDraft.correctId==='false'?'checked':''} onchange="editDraft.correctId='false'"><label style="margin:0">❌ Salah</label></div>`;
+  } else if(t==='find_sentence'){
+    area.innerHTML = '<label style="font-weight:700;display:block;margin-bottom:.3rem;font-size:.9rem;color:var(--gold-bright)">Kalimat dalam Bacaan (klik ⭐ untuk menandai kalimat jawaban benar)</label>' +
+      editDraft.passage.map((s,idx)=>`
+      <div class="edit-list-row">
+        <input type="radio" name="editQCorrect" ${editDraft.correctId===s.id?'checked':''} onchange="editDraft.correctId='${s.id}'" title="Tandai sebagai kalimat jawaban benar">
+        <input type="text" value="${escapeAttr(s.text)}" placeholder="Kalimat ${idx+1}" oninput="editDraft.passage[${idx}].text=this.value">
+        <button type="button" class="btn small-btn danger" onclick="removeEditSentence(${idx})" ${editDraft.passage.length<=2?'disabled':''}>🗑️</button>
+      </div>`).join('') +
+      `<button type="button" class="btn small-btn secondary" onclick="addEditSentence()" ${editDraft.passage.length>=8?'disabled':''}>➕ Tambah Kalimat</button>`;
+  } else if(t==='riddle'){
+    area.innerHTML = '<label style="font-weight:700;display:block;margin-bottom:.3rem;font-size:.9rem;color:var(--gold-bright)">Petunjuk (Hint)</label>' +
+      editDraft.hints.map((h,idx)=>`
+      <div class="edit-list-row">
+        <input type="text" value="${escapeAttr(h)}" placeholder="Petunjuk ${idx+1}" oninput="editDraft.hints[${idx}]=this.value">
+        <button type="button" class="btn small-btn danger" onclick="removeEditHint(${idx})" ${editDraft.hints.length<=1?'disabled':''}>🗑️</button>
+      </div>`).join('') +
+      `<button type="button" class="btn small-btn secondary" onclick="addEditHint()">➕ Tambah Petunjuk</button>` +
+      `<div class="field" style="margin-top:.8rem"><label>Jawaban Teka-teki</label><input type="text" id="editQRiddleAnswer" value="${escapeAttr(editDraft.answer)}" oninput="editDraft.answer=this.value"></div>`;
+  } else if(t==='word_order'){
+    area.innerHTML = '<label style="font-weight:700;display:block;margin-bottom:.3rem;font-size:.9rem;color:var(--gold-bright)">Kata-kata (urutan = kalimat jawaban benar)</label>' +
+      editDraft.words.map((w,idx)=>`
+      <div class="edit-list-row">
+        <input type="text" value="${escapeAttr(w)}" placeholder="Kata ${idx+1}" oninput="editDraft.words[${idx}]=this.value">
+        <button type="button" class="btn small-btn secondary" onclick="moveEditWord(${idx},-1)" ${idx===0?'disabled':''}>⬆️</button>
+        <button type="button" class="btn small-btn secondary" onclick="moveEditWord(${idx},1)" ${idx===editDraft.words.length-1?'disabled':''}>⬇️</button>
+        <button type="button" class="btn small-btn danger" onclick="removeEditWord(${idx})" ${editDraft.words.length<=2?'disabled':''}>🗑️</button>
+      </div>`).join('') +
+      `<button type="button" class="btn small-btn secondary" onclick="addEditWord()">➕ Tambah Kata</button>` +
+      `<p class="mini-note">Kalimat jawaban benar: "${escapeHtml(editDraft.words.join(' '))}"</p>`;
+  } else if(t==='match'){
+    area.innerHTML = '<label style="font-weight:700;display:block;margin-bottom:.3rem;font-size:.9rem;color:var(--gold-bright)">Pasangan Istilah & Penjelasan</label>' +
+      editDraft.pairs.map((p,idx)=>`
+      <div class="edit-list-row" style="flex-wrap:wrap">
+        <input type="text" value="${escapeAttr(p.term)}" placeholder="Istilah ${idx+1}" style="flex:1" oninput="editDraft.pairs[${idx}].term=this.value">
+        <input type="text" value="${escapeAttr(p.def)}" placeholder="Penjelasan ${idx+1}" style="flex:1" oninput="editDraft.pairs[${idx}].def=this.value">
+        <button type="button" class="btn small-btn danger" onclick="removeEditPair(${idx})" ${editDraft.pairs.length<=2?'disabled':''}>🗑️</button>
+      </div>`).join('') +
+      `<button type="button" class="btn small-btn secondary" onclick="addEditPair()" ${editDraft.pairs.length>=8?'disabled':''}>➕ Tambah Pasangan</button>`;
+  }
+}
+function escapeAttr(s){ return escapeHtml(s==null?'':s).replace(/"/g,'&quot;'); }
+
+/* -- opsi MC -- */
+function addEditOption(){ if(editDraft.options.length<6){ editDraft.options.push({id:'o'+editDraft.options.length, text:''}); renderEditTypeArea(); } }
+function removeEditOption(idx){
+  if(editDraft.options.length<=2) return;
+  const removedId = editDraft.options[idx].id;
+  editDraft.options.splice(idx,1);
+  if(editDraft.correctId===removedId) editDraft.correctId = editDraft.options[0].id;
+  renderEditTypeArea();
+}
+/* -- kalimat mencari kalimat -- */
+function addEditSentence(){ if(editDraft.passage.length<8){ editDraft.passage.push({id:'s'+editDraft.passage.length, text:''}); renderEditTypeArea(); } }
+function removeEditSentence(idx){
+  if(editDraft.passage.length<=2) return;
+  const removedId = editDraft.passage[idx].id;
+  editDraft.passage.splice(idx,1);
+  if(editDraft.correctId===removedId) editDraft.correctId = editDraft.passage[0].id;
+  renderEditTypeArea();
+}
+/* -- petunjuk teka-teki -- */
+function addEditHint(){ editDraft.hints.push(''); renderEditTypeArea(); }
+function removeEditHint(idx){ if(editDraft.hints.length>1){ editDraft.hints.splice(idx,1); renderEditTypeArea(); } }
+/* -- kata susun kata -- */
+function addEditWord(){ editDraft.words.push(''); renderEditTypeArea(); }
+function removeEditWord(idx){ if(editDraft.words.length>2){ editDraft.words.splice(idx,1); renderEditTypeArea(); } }
+function moveEditWord(idx,dir){
+  const j = idx+dir;
+  if(j<0||j>=editDraft.words.length) return;
+  const tmp = editDraft.words[idx]; editDraft.words[idx]=editDraft.words[j]; editDraft.words[j]=tmp;
+  renderEditTypeArea();
+}
+/* -- pasangan match -- */
+function addEditPair(){ if(editDraft.pairs.length<8){ editDraft.pairs.push({id:'p'+editDraft.pairs.length, term:'', def:''}); renderEditTypeArea(); } }
+function removeEditPair(idx){ if(editDraft.pairs.length>2){ editDraft.pairs.splice(idx,1); renderEditTypeArea(); } }
+
+function saveEditedQuestion(){
+  editDraft.prompt = document.getElementById('editQPrompt').value.trim();
+  editDraft.explanation = document.getElementById('editQExplanation').value.trim();
+  if(!editDraft.prompt){ alert('Pertanyaan tidak boleh kosong.'); return; }
+
+  const t = editDraft.type;
+  if(t==='mc'){
+    if(editDraft.options.some(o=>!o.text.trim())){ alert('Semua pilihan jawaban harus diisi.'); return; }
+  } else if(t==='find_sentence'){
+    if(editDraft.passage.some(s=>!s.text.trim())){ alert('Semua kalimat harus diisi.'); return; }
+  } else if(t==='riddle'){
+    editDraft.answer = (document.getElementById('editQRiddleAnswer')?.value || editDraft.answer || '').trim().toLowerCase();
+    if(editDraft.hints.some(h=>!h.trim())){ alert('Semua petunjuk harus diisi.'); return; }
+    if(!editDraft.answer){ alert('Jawaban teka-teki tidak boleh kosong.'); return; }
+  } else if(t==='word_order'){
+    if(editDraft.words.some(w=>!w.trim())){ alert('Semua kata harus diisi.'); return; }
+    editDraft.correctSentence = editDraft.words.join(' ');
+  } else if(t==='match'){
+    if(editDraft.pairs.some(p=>!p.term.trim()||!p.def.trim())){ alert('Semua istilah dan penjelasan harus diisi.'); return; }
+  }
+
+  questionBank[teacherCurrentLevel] = questionBank[teacherCurrentLevel] || [];
+  const q = Object.assign({qid: (editingIndex!==null ? questionBank[teacherCurrentLevel][editingIndex].qid : ++_qid)}, editDraft);
+  if(editingIndex!==null){ questionBank[teacherCurrentLevel][editingIndex] = q; }
+  else { questionBank[teacherCurrentLevel].push(q); }
+
+  saveQBankToStorage();
+  closeEditQuestionModal();
+  renderQuestionBankList();
+}
+function saveTeacherSettings(){
+  settings.correctPts = parseInt(document.getElementById('setCorrectPts').value)||100;
+  settings.penaltyMin = parseInt(document.getElementById('setPenaltyMin').value)||50;
+  settings.penaltyMax = parseInt(document.getElementById('setPenaltyMax').value)||100;
+  settings.hintPenalty = parseInt(document.getElementById('setHintPenalty').value)||15;
+  settings.kkm = parseInt(document.getElementById('setKKM').value);
+  if(isNaN(settings.kkm)) settings.kkm = 71;
+  settings.kkm = Math.max(0, Math.min(100, settings.kkm));
+  saveSettingsToStorage();
+  alert('Pengaturan berhasil disimpan.');
+}
+function renderHasilSiswa(){
+  const body = document.getElementById('hasilSiswaBody');
+  const idx = loadStudentsIndex();
+  if(!idx.length){ body.innerHTML = '<tr><td colspan="7">Belum ada data siswa pada perangkat ini.</td></tr>'; return; }
+  const rows = idx.map(entry=>{
+    const raw = localStorage.getItem(entry.key);
+    const s = raw ? JSON.parse(raw) : null;
+    if(!s) return null;
+    const done = s.levels.filter(l=>l.completed).length;
+    const finished = done>=10 && s.finalNilai!==null && s.finalNilai!==undefined;
+    const nilaiText = finished ? s.finalNilai : '-';
+    const ket = finished ? (s.tuntas ? '✅ Tuntas' : '❌ Belum Tuntas') : 'Belum selesai';
+    return `<tr><td>${escapeHtml(s.playerName)}</td><td>${escapeHtml(s.kelas||'-')}</td><td>${escapeHtml(s.tanggal||'-')}</td><td>${done}/10</td><td>${s.totalScore}</td><td>${nilaiText}</td><td>${ket}</td></tr>`;
+  }).filter(Boolean);
+  body.innerHTML = rows.join('') || '<tr><td colspan="7">Belum ada data siswa pada perangkat ini.</td></tr>';
+}
+
+/* ---------------- Init ---------------- */
+window.addEventListener('DOMContentLoaded', async ()=>{
+  const published = await fetchPublishedData();
+  loadSettings(published);
+  loadMateri(published);
+  loadQuestionBank(published);
+});
+</script>
+</body>
+</html>
