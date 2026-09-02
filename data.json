@@ -12,11 +12,11 @@
         "options": [
           {
             "id": "o0",
-            "text": "Mesin pencarian (search engine)"
+            "text": "Media sosial "
           },
           {
             "id": "o1",
-            "text": "Media sosial"
+            "text": "Mesin pencarian (search engine)"
           },
           {
             "id": "o2",
@@ -27,7 +27,7 @@
             "text": "Sistem operasi"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o1",
         "explanation": "Mesin pencarian membantu pengguna menemukan informasi di internet melalui kata kunci."
       },
       {
@@ -37,7 +37,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Crawler / bot"
+            "text": "Cookie"
           },
           {
             "id": "o1",
@@ -49,10 +49,10 @@
           },
           {
             "id": "o3",
-            "text": "Cookie"
+            "text": "Crawler / bot"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o3",
         "explanation": "Tahap ini disebut Crawling, dilakukan oleh crawler atau bot."
       },
       {
@@ -62,7 +62,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Indeks"
+            "text": "Cloud pribadi"
           },
           {
             "id": "o1",
@@ -74,10 +74,10 @@
           },
           {
             "id": "o3",
-            "text": "Cloud pribadi"
+            "text": "Indeks"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o3",
         "explanation": "Tahap ini disebut Indexing, data disimpan dalam indeks."
       },
       {
@@ -87,11 +87,11 @@
         "options": [
           {
             "id": "o0",
-            "text": "DuckDuckGo"
+            "text": "Google"
           },
           {
             "id": "o1",
-            "text": "Google"
+            "text": "DuckDuckGo"
           },
           {
             "id": "o2",
@@ -102,7 +102,7 @@
             "text": "Yahoo"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o1",
         "explanation": "DuckDuckGo dikenal tidak melacak dan tidak menyimpan riwayat pencarian."
       },
       {
@@ -112,7 +112,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Tiongkok"
+            "text": "Amerika Serikat"
           },
           {
             "id": "o1",
@@ -120,14 +120,14 @@
           },
           {
             "id": "o2",
-            "text": "Amerika Serikat"
+            "text": " Tiongkok"
           },
           {
             "id": "o3",
             "text": "Jepang"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o2",
         "explanation": "Baidu adalah mesin pencarian terbesar di Tiongkok."
       },
       {
@@ -137,11 +137,11 @@
         "options": [
           {
             "id": "o0",
-            "text": "Menampilkan iklan dan mengumpulkan data pengguna"
+            "text": "Tidak bisa mencari gambar"
           },
           {
             "id": "o1",
-            "text": "Tidak bisa mencari gambar"
+            "text": "Menampilkan iklan dan mengumpulkan data pengguna"
           },
           {
             "id": "o2",
@@ -152,7 +152,7 @@
             "text": "Tidak dapat diakses di Indonesia"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o1",
         "explanation": "Google menampilkan iklan pada beberapa hasil dan mengumpulkan data pengguna."
       },
       {
@@ -187,11 +187,11 @@
         "options": [
           {
             "id": "o0",
-            "text": "Searching"
+            "text": "Crawling"
           },
           {
             "id": "o1",
-            "text": "Crawling"
+            "text": "Searching"
           },
           {
             "id": "o2",
@@ -202,7 +202,7 @@
             "text": "Caching"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o1",
         "explanation": "Tahap ini disebut Searching."
       },
       {
@@ -237,7 +237,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Mesin pencarian membantu menemukan informasi berdasarkan kata kunci yang dimasukkan pengguna"
+            "text": "Mesin pencarian hanya bisa digunakan di komputer, tidak di ponsel"
           },
           {
             "id": "o1",
@@ -245,14 +245,14 @@
           },
           {
             "id": "o2",
-            "text": "Mesin pencarian hanya bisa digunakan di komputer, tidak di ponsel"
+            "text": "Mesin pencarian membantu menemukan informasi berdasarkan kata kunci yang dimasukkan pengguna"
           },
           {
             "id": "o3",
             "text": "Mesin pencarian tidak dapat menampilkan gambar"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o2",
         "explanation": "Fungsi utama mesin pencarian adalah membantu menemukan informasi berdasarkan kata kunci."
       }
     ],
@@ -1000,7 +1000,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Menjelajah Informasi Digital dengan Bijak"
+            "text": "Clickbait"
           },
           {
             "id": "o1",
@@ -1008,14 +1008,14 @@
           },
           {
             "id": "o2",
-            "text": "Clickbait"
+            "text": "Menjelajah Informasi Digital dengan Bijak"
           },
           {
             "id": "o3",
             "text": "Crawling"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o2",
         "explanation": "Kemampuan ini disebut menjelajah informasi digital dengan bijak (literasi digital)."
       },
       {
@@ -1025,7 +1025,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Pencurian data pribadi dan penipuan (phishing)"
+            "text": "Baterai ponsel cepat habis"
           },
           {
             "id": "o1",
@@ -1033,14 +1033,14 @@
           },
           {
             "id": "o2",
-            "text": "Baterai ponsel cepat habis"
+            "text": "Pencurian data pribadi dan penipuan (phishing)"
           },
           {
             "id": "o3",
             "text": "Koneksi internet menjadi lebih cepat"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o2",
         "explanation": "Ketidakwaspadaan dapat menyebabkan pencurian data pribadi dan penipuan daring seperti phishing."
       },
       {
@@ -1100,7 +1100,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Digital footprint (jejak digital)"
+            "text": "Cookie "
           },
           {
             "id": "o1",
@@ -1112,10 +1112,10 @@
           },
           {
             "id": "o3",
-            "text": "Cookie"
+            "text": "Digital footprint (jejak digital)"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o3",
         "explanation": "Aktivitas daring meninggalkan jejak digital yang sulit dihapus dan dapat berdampak di masa depan."
       },
       {
@@ -1125,11 +1125,11 @@
         "options": [
           {
             "id": "o0",
-            "text": "Tidak memasukkan kata sandi dan melaporkan tautan tersebut"
+            "text": "Langsung memasukkan kata sandi agar cepat selesai"
           },
           {
             "id": "o1",
-            "text": "Langsung memasukkan kata sandi agar cepat selesai"
+            "text": "Tidak memasukkan kata sandi dan melaporkan tautan tersebut"
           },
           {
             "id": "o2",
@@ -1140,7 +1140,7 @@
             "text": "Mengklik tautan berulang kali untuk memastikan"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o1",
         "explanation": "Tautan mencurigakan yang meminta kata sandi biasanya merupakan upaya phishing, sehingga harus dihindari dan dilaporkan."
       },
       {
@@ -1175,11 +1175,11 @@
         "options": [
           {
             "id": "o0",
-            "text": "Membaca keseluruhan isi dan memeriksa kebenarannya terlebih dahulu"
+            "text": "Membagikannya langsung berdasarkan judul saja"
           },
           {
             "id": "o1",
-            "text": "Membagikannya langsung berdasarkan judul saja"
+            "text": "Membaca keseluruhan isi dan memeriksa kebenarannya terlebih dahulu"
           },
           {
             "id": "o2",
@@ -1190,7 +1190,7 @@
             "text": "Menghapus nama penulis aslinya"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o1",
         "explanation": "Sebelum membagikan berita, sebaiknya baca dan periksa kebenaran isinya terlebih dahulu."
       },
       {
@@ -1200,7 +1200,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Phishing (penipuan daring)"
+            "text": "Indexing "
           },
           {
             "id": "o1",
@@ -1208,14 +1208,14 @@
           },
           {
             "id": "o2",
-            "text": "Indexing"
+            "text": "Phishing (penipuan daring)"
           },
           {
             "id": "o3",
             "text": "Ranking"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o2",
         "explanation": "Permintaan data pribadi dan kata sandi melalui iming-iming hadiah adalah ciri khas phishing."
       },
       {
@@ -1252,7 +1252,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Pencurian data melalui domain palsu (phishing)"
+            "text": "Pencemaran nama baik di blog "
           },
           {
             "id": "o1",
@@ -1264,10 +1264,10 @@
           },
           {
             "id": "o3",
-            "text": "Pencemaran nama baik di blog"
+            "text": "Pencurian data melalui domain palsu (phishing)"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o3",
         "explanation": "Kasus BCA 2001 adalah kasus pencurian data melalui domain mirip (mengarah ke phishing)."
       },
       {
@@ -1302,7 +1302,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Kekosongan hukum yang jelas untuk kejahatan digital"
+            "text": "Tidak ada mesin pencarian saat itu "
           },
           {
             "id": "o1",
@@ -1310,14 +1310,14 @@
           },
           {
             "id": "o2",
-            "text": "Tidak ada mesin pencarian saat itu"
+            "text": "Kekosongan hukum yang jelas untuk kejahatan digital"
           },
           {
             "id": "o3",
             "text": "Semua kasus digital sudah diatur dengan baik"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o2",
         "explanation": "Sebelum UU ITE, terjadi kekosongan hukum sehingga kejahatan digital sulit ditangani secara efektif."
       },
       {
@@ -1327,7 +1327,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Pasal 27 tentang pencemaran nama baik (\"pasal karet\")"
+            "text": "Pasal tentang e-commerce "
           },
           {
             "id": "o1",
@@ -1339,10 +1339,10 @@
           },
           {
             "id": "o3",
-            "text": "Pasal tentang e-commerce"
+            "text": "Pasal 27 tentang pencemaran nama baik (\"pasal karet\")"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o3",
         "explanation": "Pasal 27 (\"pasal karet\") dirampingkan, dan ketentuan pencemaran nama baik dipindahkan ke Pasal 27A."
       },
       {
@@ -1377,7 +1377,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Pasal tentang penyebaran berita bohong yang menimbulkan keonaran"
+            "text": "Pasal tentang pajak e-commerce"
           },
           {
             "id": "o1",
@@ -1385,14 +1385,14 @@
           },
           {
             "id": "o2",
-            "text": "Pasal tentang pajak e-commerce"
+            "text": "Pasal tentang penyebaran berita bohong yang menimbulkan keonaran"
           },
           {
             "id": "o3",
             "text": "Pasal tentang perlindungan merek dagang"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o2",
         "explanation": "UU ITE mengatur ketentuan pidana bagi penyebaran berita bohong yang menimbulkan keonaran di masyarakat."
       },
       {
@@ -1402,11 +1402,11 @@
         "options": [
           {
             "id": "o0",
-            "text": "Karena rumusannya dinilai terlalu luas sehingga dapat ditafsirkan secara berbeda-beda"
+            "text": "Karena pasal tersebut hanya berlaku selama satu tahun"
           },
           {
             "id": "o1",
-            "text": "Karena pasal tersebut hanya berlaku selama satu tahun"
+            "text": "Karena rumusannya dinilai terlalu luas sehingga dapat ditafsirkan secara berbeda-beda"
           },
           {
             "id": "o2",
@@ -1417,7 +1417,7 @@
             "text": "Karena pasal tersebut hanya mengatur transaksi jual beli"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o1",
         "explanation": "Istilah \"pasal karet\" muncul karena rumusan pasal dinilai terlalu luas dan multitafsir."
       },
       {
@@ -1427,7 +1427,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Memperjelas rumusan pasal pencemaran nama baik agar tidak multitafsir"
+            "text": "Membatasi akses internet hanya untuk pemerintah"
           },
           {
             "id": "o1",
@@ -1439,10 +1439,10 @@
           },
           {
             "id": "o3",
-            "text": "Membatasi akses internet hanya untuk pemerintah"
+            "text": "Memperjelas rumusan pasal pencemaran nama baik agar tidak multitafsir"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o3",
         "explanation": "Revisi bertujuan memperjelas rumusan pasal agar tidak menimbulkan multitafsir yang merugikan kebebasan berekspresi."
       },
       {
@@ -1504,7 +1504,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Ranking"
+            "text": "Indexing"
           },
           {
             "id": "o1",
@@ -1512,14 +1512,14 @@
           },
           {
             "id": "o2",
-            "text": "Indexing"
+            "text": "Ranking "
           },
           {
             "id": "o3",
             "text": "Searching"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o2",
         "explanation": "Ranking adalah tahap pengurutan hasil pencarian."
       },
       {
@@ -1592,7 +1592,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Menggunakan kata sandi yang kuat dan tidak membagikannya ke orang lain"
+            "text": "Membagikan kata sandi kepada teman dekat "
           },
           {
             "id": "o1",
@@ -1600,14 +1600,14 @@
           },
           {
             "id": "o2",
-            "text": "Membagikan kata sandi kepada teman dekat"
+            "text": "Menggunakan kata sandi yang kuat dan tidak membagikannya ke orang lain"
           },
           {
             "id": "o3",
             "text": "Menuliskan kata sandi di tempat umum agar tidak lupa"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o2",
         "explanation": "Keamanan digital yang baik mencakup penggunaan kata sandi kuat dan menjaga kerahasiaannya."
       },
       {
@@ -1668,7 +1668,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Menjadi pengguna digital yang kritis, bertanggung jawab, aman, dan beretika"
+            "text": "Menghindari penggunaan mesin pencari sama sekali"
           },
           {
             "id": "o1",
@@ -1680,10 +1680,10 @@
           },
           {
             "id": "o3",
-            "text": "Menghindari penggunaan mesin pencari sama sekali"
+            "text": "Menjadi pengguna digital yang kritis, bertanggung jawab, aman, dan beretika"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o3",
         "explanation": "Tujuannya adalah menjadi pengguna digital yang kritis, bertanggung jawab, aman, dan beretika."
       },
       {
@@ -1834,7 +1834,7 @@
         "options": [
           {
             "id": "o0",
-            "text": "Kritis dalam menyaring informasi, beretika, menjaga keamanan data, dan bertanggung jawab secara hukum"
+            "text": "Mengabaikan aturan hukum karena merasa aman di dunia maya "
           },
           {
             "id": "o1",
@@ -1846,10 +1846,10 @@
           },
           {
             "id": "o3",
-            "text": "Mengabaikan aturan hukum karena merasa aman di dunia maya"
+            "text": "Kritis dalam menyaring informasi, beretika, menjaga keamanan data, dan bertanggung jawab secara hukum"
           }
         ],
-        "correctId": "o0",
+        "correctId": "o3",
         "explanation": "Pengguna digital yang bijak bersikap kritis, beretika, menjaga keamanan, dan bertanggung jawab secara hukum."
       }
     ]
